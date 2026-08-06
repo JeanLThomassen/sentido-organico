@@ -1,26 +1,67 @@
 :root {
   /* Fondos */
-  --color-bg: #FCFBF9;           /* fondo principal */
+  --color-bg: #f1f1f1;           /* fondo principal */
   --color-bg-alt: #F9F6F0;       /* fondo secundario, cards, secciones */
 
   /* Textos */
-  --color-text: #4A3F35;         /* texto principal - marrón café */
+  --color-text: #4A3F35;
+  --color-text-light: #c2b6ac;         /* texto principal - marrón café */
   --color-text-muted: #7A6B5D;   /* texto secundario - tierra */
 
   /* Acentos / Botones */
-  --color-accent: #afbc7f;       /* arena/dorado - botones, links, CTAs */
-  --color-accent-dark: #89a663;  /* hover / estado activo (más oscuro) */
-  --color-accent-light: #D9C9AC; /* fondos suaves, badges, hover sutil */
+  --color-accent: #7aa769;       /* arena/dorado - botones, links, CTAs */
+  --color-accent-dark: #5a804c;  /* hover / estado activo (más oscuro) */
+  --color-accent-light: #c4d9ac; /* fondos suaves, badges, hover sutil */
 
   /* Bordes */
-  --color-border: #D5C6B6;       /* beige - separadores, inputs, cards */
+  --color-border: #c4d5b6;       /* beige - separadores, inputs, cards */
 
   /* Estados (ajustados a tonos tierra, sin que rompan la paleta) */
   --color-success: #7A8B5C;      /* verde oliva suave */
   --color-error: #B5544A;        /* terracota/rojo tierra */
   --color-warning: #C99A3E;      /* mostaza */
 
-  /* Modo oscuro (opcional, coherente con la paleta cálida) */
+  /* Modo oscuro */
   --color-bg-dark: #2B241D;
   --color-text-dark: #F3EDE4;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.card {
+  background-color: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+}
+
+.button {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.button:hover {
+    color: var(--color-bg);
+    background-color: var(--color-accent-dark);
+    text-decoration: none;
+}
+
+.button-diff {
+  background-color: var(--color-text-muted);
+  color: var(--color-bg);
+}
+
+.button-diff:hover {
+    color: var(--color-bg);
+    background-color: var(--color-text);
+    text-decoration: none;
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-light{
+    color: var(--color-text-dark);
 }

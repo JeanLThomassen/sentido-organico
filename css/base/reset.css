@@ -4,7 +4,10 @@
     box-sizing: border-box;
 }
 
-body{
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--color-bg);
+hr{
+    border: none;           
+    height: 1px;              
+    background-color: var(--color-border);  
+    width: 60%;                
+    margin: 20px auto; 
 }

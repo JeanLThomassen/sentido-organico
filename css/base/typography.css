@@ -13,6 +13,8 @@
   --font-size-lg: 1.5rem;     /* 24px */
   --font-size-xl: 2rem;       /* 32px */
   --font-size-2xl: 2.5rem;    /* 40px */
+  --font-size-xxl: 4rem;      /* 64px */
+  --font-size-xxxl: 8rem;     /* 128px */
 
   /* Pesos */
   --font-weight-regular: 400;
@@ -24,4 +26,51 @@
   --line-height-tight: 1.2;   /* para títulos */
   --line-height-normal: 1.5;  /* para texto general */
   --line-height-loose: 1.8;   /* para párrafos largos */
+}
+
+/* typography.css */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--font-size-2xl); }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+h4 { font-size: var(--font-size-md); }
+
+p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-loose);
+  color: var(--color-text);
+}
+
+small, .text-sm {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+strong, b {
+  font-weight: var(--font-weight-bold);
 }
