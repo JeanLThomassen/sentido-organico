@@ -1,7 +1,7 @@
 :root {
   /* Fondos */
   --color-bg: #fafafa;           /* fondo principal */
-  --color-bg-alt: #fcfdfc;       /* fondo secundario, cards, secciones */
+  --color-bg-alt: #f7f7f7;       /* fondo secundario, cards, secciones */
 
   /* Textos */
   --color-text: #4A3F35;
