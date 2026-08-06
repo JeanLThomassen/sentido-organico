@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <title>Sentido Organico - Tandil</title>
 </head>
 <body>
     <header>
-        <div><img style="width: 50px;" src="assets/images/logo.jpg" alt="Logo Sentido Organico"></div>
         <div>
-            <div>Inicio</div>
-            <div>Servicios</div>
-            <div>Nosotros</div>
+            <img src="assets/images/logo-sf.png" alt="Logo Sentido Organico">
         </div>
         <div>
-            <button>Reservar Turno</button>
+            <nav>
+                <a href="#home">Inicio</a>
+                <a href="#services">Servicios</a>
+                <a href="#about">Nosotros</a>
+            </nav>
+        </div>
+        <div>
+            <a class="booking-button" href="#booking">Reservar Turno</a>
         </div>
     </header>
 
-    <main>
+    <main id="home">
         <div>
             <div>            
                 <div>
@@ -32,12 +36,12 @@
                     <span>Elegi priorizar tu salud capilar</span>
                 </div>
             </div>
-            <button>Reservar Turno</button>
-            <button>Conoce más</button>
+            <a href="#booking">Reservar Turno</a>
+            <a href="#about">Conoce más</a>
         </div>
     </main>
 
-    <section>
+    <section id="services">
         <div>
             <span>Servicios</span>
             <h2>Nuestros Servicios</h2>
@@ -56,14 +60,14 @@
                     </div>
                     <div></div>
                     <div>
-                        <button>Reservar Cita</button>
+                        <a href="#booking">Reservar Cita</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section>
+    <section id="about">
         <div>
             <div>
                 <h2>Nosotros</h2>
@@ -97,7 +101,7 @@
         </div>
     </section>
 
-    <section>
+    <section id="booking">
         <div>
             <div>
                 <span>Reservar Turno</span>

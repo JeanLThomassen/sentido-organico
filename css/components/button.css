@@ -1,0 +1,10 @@
+a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+}
+
+.booking-button {
+    background-color: var(--color-accent);
+}

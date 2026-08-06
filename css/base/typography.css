@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lora:ital@0;1&display=swap');
+
+:root {
+  /* Familias tipográficas */
+  --font-heading: 'Lora', serif;        /* para títulos, algo con carácter */
+  --font-body: 'Poppins', sans-serif;   /* para texto general, legible */
+
+  /* Escala de tamaños (basada en rem, escala modular) */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px - tamaño base del body */
+  --font-size-md: 1.125rem;   /* 18px */
+  --font-size-lg: 1.5rem;     /* 24px */
+  --font-size-xl: 2rem;       /* 32px */
+  --font-size-2xl: 2.5rem;    /* 40px */
+
+  /* Pesos */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Interlineado */
+  --line-height-tight: 1.2;   /* para títulos */
+  --line-height-normal: 1.5;  /* para texto general */
+  --line-height-loose: 1.8;   /* para párrafos largos */
+}
