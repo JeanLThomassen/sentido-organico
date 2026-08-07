@@ -13,8 +13,9 @@
   --color-accent-dark: #5a804c;  /* hover / estado activo (más oscuro) */
   --color-accent-light: #c4d9ac; /* fondos suaves, badges, hover sutil */
 
-  /* Bordes */
-  --color-border: #c4d5b6;       /* beige - separadores, inputs, cards */
+  /* Bordes & Lineas*/
+  --color-line: #c4d5b6;
+  --color-border: #d5c7b6;       /* beige - separadores, inputs, cards */
 
   /* Estados (ajustados a tonos tierra, sin que rompan la paleta) */
   --color-success: #7A8B5C;      /* verde oliva suave */
@@ -29,6 +30,10 @@
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
+}
+
+span{
+  color: var(--color-text-light);
 }
 
 .card {

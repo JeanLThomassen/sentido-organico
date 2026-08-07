@@ -10,7 +10,6 @@ main {
 .hero {
     flex-direction: column;
 
-
     background-image: url('../../assets/images/bg-hero.png');
     background-size: cover; 
     background-position: center; 
@@ -87,7 +86,7 @@ main {
 
 .card-text{
     flex-direction: column;
-    padding: 5px 20px;
+    padding: 5px 10px;
 }
 
 .card-text h3{
@@ -100,3 +99,50 @@ main {
 
 /* ----------- SECTION / ABOUT ----------- */
 
+.container img{
+    border-radius: 10px;
+}
+
+
+.about-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    gap: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.profesional-card{
+    width: 70%;
+    
+    padding: 1.25rem;
+    
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-alt);
+}
+
+.about-text{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    text-align: justify;
+}
+
+.about-text span{
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    font-size: var(--font-size-xs);
+}
+
+.about-container .container h4{
+    font-size: var(--font-size-lg);
+    margin-bottom: 2rem;
+    width: 85%;
+}
+
+.about-text .container p{
+    margin-bottom: 1rem;
+}

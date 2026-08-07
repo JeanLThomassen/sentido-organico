@@ -7,8 +7,8 @@
 hr{
     border: none;           
     height: 1px;              
-    background-color: var(--color-border);  
-    width: 60%;                
+    background-color: var(--color-line);  
+    width: 30%;                
     margin: 20px auto; 
 }
 
@@ -25,4 +25,8 @@ svg {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.jump{
+    width: 60%;
 }
