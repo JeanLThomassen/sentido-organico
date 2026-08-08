@@ -1,0 +1,23 @@
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 2rem;
+    border-top: 1px solid var(--color-border);
+    background-color: var(--color-bg-alt);
+}
+
+footer div{
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    display: flex;
+    align-items: center;
+}
+
+a svg{
+    width: 25px;
+}
