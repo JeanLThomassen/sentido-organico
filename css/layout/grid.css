@@ -208,35 +208,51 @@ form {
     flex-direction: column;
     align-items: center;
 
-    width: 800px;
+    width: 700px;
     height: 550px;
 
     padding: 5px;
 
     border-radius: 10px;
-    background-color: var(--color-text-muted);
+    border: 2px solid var(--color-border);
+    background-color: var(--color-bg-alt);
 }
 
 .steps{
     display: flex;
     flex-direction: row;
     
-    gap: 3rem;
-    padding: 10px;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 .step{
+    display: flex;
+    align-items: center;
+
     width: 200px;
-    
-    padding: 5px;
-    margin: 10px;
+    height: 40px;
     
     border-radius: 5px;
-    background-color: var(--color-border);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-alt);
 }
 
 .step span{
-    color: var(--color-text);
+    margin: 1rem;
+}
+
+.SELECTED{
+    color: var(--color-bg);
+    background-color: var(--color-text-muted);
+}
+
+.booking-header{
+    
+}
+
+.booking-header hr{
+    width: 600px;
 }
 
 .form-group {

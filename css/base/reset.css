@@ -27,6 +27,10 @@ svg {
     align-items: center;
 }
 
+.container span{
+    color: var(--color-text-light);
+}
+
 .jump{
     width: 60%;
 }
