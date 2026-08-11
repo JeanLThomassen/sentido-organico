@@ -7,3 +7,16 @@ window.addEventListener('scroll', () => {
     header.classList.remove('header-activo');
   }
 });
+
+import { initSlider } from './components/slider';
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    header.classList.add('header-activo');
+  } else {
+    header.classList.remove('header-activo');
+  }
+});
+
+const sliderEl = document.getElementById('slider');
+if (sliderEl) initSlider(sliderEl);

@@ -62,14 +62,6 @@ main {
 }
 
 /* ----------- SECTION / ABOUT ----------- */
-
-.container img{
-    height: 500px;
-    width: 500px;
-
-    border-radius: 10px;
-}
-
 .container .text-muted{
     padding: 1rem;
 }
@@ -90,8 +82,13 @@ main {
     padding: 1.25rem;
     
     border-radius: 10px;
-    /* border: 1px solid var(--color-border); */
     background-color: var(--color-bg-alt);
+}
+
+.profesional-card img{
+    height: 500px;
+    width: 500px;
+    border-radius: 10px;
 }
 
 .about-text{

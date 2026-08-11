@@ -4,7 +4,7 @@ header {
     align-items: center;
     padding: 1rem 2rem;
     box-sizing: border-box;
-    border-bottom: 1.5px solid var(--color-border);
+    border-bottom: 1.5px solid var(--color-line);
 }
 
 header div {
