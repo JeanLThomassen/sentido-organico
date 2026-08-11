@@ -97,7 +97,7 @@
 
     <section id="about">
         <div class="container">
-            <span>Nosotros</span>
+            <span class="section-title">Nosotros</span>
             <h2>¿Quien esta detras de todo?</h2>
             <hr>
             <p>Conoce quien esta detrás de Sentido Orgánico</p>
@@ -133,7 +133,7 @@
     
     <section id="location">
         <div class="container">
-            <h2>¿Donde nos encontramos?</h2>
+            <h2 class="section-title">¿Donde nos encontramos?</h2>
             <hr>
             <br>
             <div class="location-card">
@@ -157,7 +157,7 @@
     
     <section id="booking">
         <div class="container">
-            <span>Reserva tu Cita</span>
+            <span class="section-title">Reserva tu Cita</span>
             <h2>Agenda tu cita</h2>
             <div></div>
             <hr>
@@ -184,9 +184,19 @@
                     <hr>
                 </div> 
                 <div class="form-group">
-                    <label for="booking">Nombre completo</label>
-                    <input type="text">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" placeholder="Ej: Yael..." required>
+                    <div>
+                        <label for="email">Correo Electronico</label>
+                        <label for="tel">Telefono</label>
+                    </div>
+                    
+                    <div class="form-input">
+                        <input type="email" placeholder="yael@gmail.com" required>
+                        <input type="number" placeholder="24956856..." required>
+                    </div>
                 </div>
+                <button type="submit" class="button-classic button-diff">Siguiente</button>
             </div>
         </form>
     </section>

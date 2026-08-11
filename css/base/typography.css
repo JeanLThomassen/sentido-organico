@@ -60,9 +60,9 @@ span {
   font-size: var(--font-size-md);
 }
 
-small, .text-sm {
+small, .text-sm, input, label {
   font-size: var(--font-size-sm);
-  /* color: var(--color-text-muted); */
+  font-family: var(--font-body);
 }
 
 a {

@@ -8,6 +8,13 @@ a:hover{
     text-decoration: none;
 }
 
+button{
+    all: unset;
+    width: 250px;    
+    text-align: center;
+    margin: 5px;
+}
+
 .button-header {
     display: inline-block;
     padding: 8px 16px;

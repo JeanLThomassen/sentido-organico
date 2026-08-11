@@ -1,0 +1,35 @@
+/* ----------- CARDS ----------- */
+
+.card {
+    display: flex;
+    flex-direction: row;
+
+    width: 50%;
+    height: 100%;
+
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.card img{
+    border-radius: 10px;
+    width: 450px;
+    margin-right: 1.5rem; 
+}
+
+.card hr{
+    width: 100%;
+}
+
+.card-text{
+    flex-direction: column;
+    padding: 5px 10px;
+}
+
+.card-text h3{
+    font-size: var(--font-size-xxl);
+}
+
+.card-text p{
+    margin-top: 1rem;
+}

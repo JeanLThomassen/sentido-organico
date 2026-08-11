@@ -2,6 +2,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Asegura que quede por encima del contenido */
+  background-color: #ffffff; /* Evita que el contenido de fondo se traslape */
 }
 
 hr{
@@ -13,6 +21,7 @@ hr{
 }
 
 section {
+    padding: 10px;
     height: 100vh;
 }
 
@@ -33,4 +42,8 @@ svg {
 
 .jump{
     width: 60%;
+}
+
+.section-title{
+    margin-top: 3rem;
 }
