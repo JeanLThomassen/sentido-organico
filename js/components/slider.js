@@ -17,10 +17,11 @@ export function initSlider(root) {
 
   const dots = Array.from(dotsContainer.children);
 
-  function update() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    function update() {
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
     dots.forEach((dot, i) => dot.classList.toggle('slider__dot--active', i === currentIndex));
-  }
+    }
 
   function goToSlide(index) {
     currentIndex = (index + slides.length) % slides.length;

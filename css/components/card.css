@@ -3,46 +3,37 @@
 .card {
     display: flex;
     flex-direction: row;
+    align-items: center;
 
-    width: 50%;
+    width: 100%;
+    max-width: 800px;
     height: 100%;
 
     padding: 2rem;
     border-radius: 5px;
 }
 
-.card img{
-    border-radius: 10px;
-    max-width: 350px;
-    margin-right: 1.5rem; 
-}
-
 .card hr{
     width: 100%;
 }
 
-.card-text{
-    flex-direction: column;
-    padding: 5px 10px;
-}
-
-.card-text h3{
-    font-size: var(--font-size-xxl);
-}
-
-.card-text p{
-    margin-top: 1rem;
-}
-
 .card__media {
-    flex: 0 0 450px;
+    flex: 0 0 320px;
     margin-right: 1.5rem;
 }
 
 .card__image {
     display: block;
     width: 100%;
-    height: 350px;
+    height: 320px;
     object-fit: cover;
     border-radius: 10px;
+}
+
+.card-text{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 5px 10px;
 }

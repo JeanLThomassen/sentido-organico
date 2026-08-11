@@ -8,7 +8,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-import { initSlider } from './components/slider';
+import { initSlider } from './components/slider.js';
 
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
