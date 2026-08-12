@@ -1,0 +1,95 @@
+form {
+    display: flex;
+    justify-content: center;
+
+    padding: 2rem;
+}
+
+.booking-header h3{
+    margin-top: 10px;
+    font-weight: 200;
+}
+
+.booking-header hr{
+    background-color: var(--color-border);
+}
+
+.form-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: 700px;
+    height: 450px;
+    
+    padding: 10px;
+    
+    border-radius: 10px;
+    border: 2px solid var(--color-border);
+    background-color: var(--color-bg-alt);
+}
+
+.form-card hr{
+    width: 600px;
+}
+
+.steps{
+    display: flex;
+    flex-direction: row;
+    
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.step{
+    display: flex;
+    align-items: center;
+
+    width: 200px;
+    height: 40px;
+    
+    border-radius: 5px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-alt);
+}
+
+.step span{
+    margin: 1rem;
+}
+
+.SELECTED{
+    color: var(--color-bg);
+    background-color: var(--color-text-muted);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.form-input{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    gap: 1rem;
+    width: 600px;
+}
+
+input{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 1rem;
+
+    border: none;
+    border-bottom: 2px solid var(--color-border);
+    outline: none;
+    padding: 5px 0;
+    background-color: transparent;
+}
+
+label{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}

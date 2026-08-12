@@ -25,6 +25,8 @@
   /* Modo oscuro */
   --color-bg-dark: #2B241D;
   --color-text-dark: #F3EDE4;
+
+  --header-height: 70px;
 }
 
 body {
