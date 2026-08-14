@@ -194,9 +194,9 @@
             <p>Reserva tu turno en 3 simples pasos</p>
         </div>
         <form>
-            <div class="form-card">
+            <div id="bookingForm" class="form_card">
                 <div class="steps">
-                    <div class="step SELECTED">
+                    <div class="step">
                         <span>1</span>
                         <small>DATOS</small>
                     </div>
@@ -209,55 +209,57 @@
                         <small>TURNO</small>
                     </div>
                 </div>
-            <div class="form-panel form-panel--active" data-step="1">
-                <div class="booking-header">
-                    <h3>Tus Datos</h3>
-                    <hr>
-                </div>
-                <div class="form-group">
-                    <label for="name">Nombre completo</label>
-                    <input type="text" placeholder="Ej: Yael..." required>
-                    <div>
-                        <label for="email">Correo Electronico</label>
-                        <label for="tel">Telefono</label>
+                <div class="form_panel" data-step="1">
+                    <div class="booking_header">
+                        <h3>Tus Datos</h3>
+                        <hr>
                     </div>
-                    <div class="form-input">
-                        <input type="email" placeholder="yael@gmail.com" required>
-                        <input type="number" placeholder="24956856..." required>
+                    <div class="form_group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" placeholder="Ej: Yael..." required>
+                        <div>
+                            <label for="email">Correo Electronico</label>
+                            <label for="tel">Telefono</label>
+                        </div>
+                        <div class="form-input">
+                            <input type="email" placeholder="yael@gmail.com" required>
+                            <input type="number" placeholder="24956856..." required>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-panel" data-step="2">
-                <div class="booking-header">
-                    <h3>Elegí el servicio</h3>
-                    <hr>
+                <div class="form_panel" data-step="2">
+                    <div class="booking_header">
+                        <h3>Elegí el servicio</h3>
+                        <hr>
+                    </div>
+                    <div class="form_group">
+                        <label for="service-select">Servicio</label>
+                        <select id="service-select">
+                            <option value="corte">Corte</option>
+                            <option value="color-b">Color barros</option>
+                            <option value="color-r">Color raiz</option>
+                            <option value="color-c">Color completo</option>
+                            <option value="mechas">Mechas</option>
+                            <option value="balayage">Balayage</option>
+                            <option value="tratamiento-a">Tratamientos ayurveicos</option>
+                            <option value="tratamiento-ldf">Tratamientos libre de formol</option>
+                            <option value="p-m">Peinados y Maquillaje</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="service-select">Servicio</label>
-                    <select id="service-select">
-                        <option value="corte">Corte</option>
-                        <option value="color-b">Color barros</option>
-                        <option value="color-r">Color raiz</option>
-                        <option value="color-c">Color completo</option>
-                        <option value="mechas">Mechas</option>
-                        <option value="balayage">Balayage</option>
-                        <option value="tratamiento-a">Tratamientos ayurveicos</option>
-                        <option value="tratamiento-ldf">Tratamientos libre de formol</option>
-                        <option value="p-m">Peinados y Maquillaje</option>
-                    </select>
-                </div>
-            </div>
 
-            <div class="form-panel" data-step="3">
-                <div class="booking-header">
-                    <h3>Elegí tu turno</h3>
-                    <hr>
-                </div>
-                <div id="calendar"></div>
-            </div>
-
-            <button id="nextBtn-Form" type="button" class="button-classic button-diff">Siguiente</button>
+                <div class="form_panel" data-step="3">
+                    <div class="booking_header">
+                        <h3>Elegí tu turno</h3>
+                        <hr>
+                    </div>
+                    <div id="calendar"></div>
+                </div>  
+            <div>
+            <button type="button" id="prevBtn" class="button-classic button">Anterior</button>
+            <button type="button" id="nextBtn" class="button-classic button-diff">Siguiente</button>
+        </div>
         </div>
     </form>
     </section>

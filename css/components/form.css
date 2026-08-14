@@ -2,6 +2,7 @@ form {
     display: flex;
     justify-content: center;
     
+    height: 100%;
     padding: 2rem;
 }
 
@@ -22,22 +23,37 @@ label{
     padding-bottom: 8px;
 }
 
-.booking-header h3{
+select {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    color: var(--color-text);
+    font-family: var(--font-body);
+
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid var(--color-border);
+}
+
+.booking_header h3{
     margin-top: 10px;
     font-weight: 200;
 }
 
-.booking-header hr{
+.booking_header hr{
     background-color: var(--color-border);
 }
 
-.form-card {
+.form_card {
     display: flex;
     flex-direction: column;
     align-items: center;
     
+    position: relative;
+
     width: 700px;
-    height: 450px;
+    height: 515px;
     
     padding: 10px;
     
@@ -46,7 +62,39 @@ label{
     background-color: var(--color-bg-alt);
 }
 
-.form-card hr{
+.form_card hr{
+    width: 600px;
+}
+
+.form_panel {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
+    position: absolute;
+}
+
+.form_panel--active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0s;
+    position: relative;
+}
+
+.form_group {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.form_input{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    gap: 1rem;
     width: 600px;
 }
 
@@ -74,30 +122,7 @@ label{
     margin: 1rem;
 }
 
-.SELECTED{
+.step--selected{
     color: var(--color-bg);
     background-color: var(--color-text-muted);
-}
-
-.form-panel{
-    display: none;
-}
-
-.form-panel--active{
-    display: block;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-
-}
-
-.form-input{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    
-    gap: 1rem;
-    width: 600px;
 }
