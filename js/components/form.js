@@ -5,9 +5,9 @@ export function initBookingForm(root) {
     const form_panel = root.querySelectorAll('.form_panel');
 
     let currentStep = 0;
-    const maxIndex = stepPanel.length - 1;
     const steps = Array.from(step);
     const stepPanel = Array.from(form_panel);
+    const maxIndex = stepPanel.length - 1;
 
     function update(index) {
         const stepPanelOn = stepPanel[index];
@@ -40,7 +40,7 @@ export function initBookingForm(root) {
         if(currentStep == maxIndex){
 
         } else {
-            goToStep(currentStep + 1)
+            goToStep(currentStep + 1);
         }
     }
     const prev = () => goToStep(currentStep - 1); 

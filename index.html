@@ -256,7 +256,35 @@
                         <h3>Elegí el dia</h3>
                         <hr>
                     </div>
-                    <div id="calendar"></div>
+                    <div id="calendar" class="calendar">
+                        <div class="calendar__header">
+                            <button type="button" class="calendar__nav" id="prevMonth" aria-label="Mes anterior">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                            </button>
+                            <span class="calendar__month" id="monthYearLabel">Agosto</span>
+                            <button type="button" class="calendar__nav" id="nextMonth" aria-label="Mes siguiente">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                            </button>
+                        </div>
+
+                        <div class="calendar__weekdays">
+                            <span>Dom</span>
+                            <span>Lun</span>
+                            <span>Mar</span>
+                            <span>Mié</span>
+                            <span>Jue</span>
+                            <span>Vie</span>
+                            <span>Sáb</span>
+                        </div>
+
+                        <div class="calendar__grid" id="calendarGrid">
+                            <!-- JS va a inyectar acá un botón por cada día -->
+                        </div>
+
+                        <div class="calendar__times" id="calendarTimes">
+                            <!-- JS va a inyectar acá los horarios, una vez que se elige un día -->
+                        </div>
+                    </div>
                 </div>  
             <div>
             <button type="button" id="prevBtn" class="button-classic button">Anterior</button>
