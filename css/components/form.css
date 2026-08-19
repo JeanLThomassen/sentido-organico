@@ -73,6 +73,9 @@ select {
     transform: translateY(12px);
     transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
     position: absolute;
+
+    width: 90%;
+    height: 100%;
 }
 
 .form_panel--active {
@@ -86,7 +89,6 @@ select {
 .form_group {
     display: flex;
     flex-direction: column;
-    
 }
 
 .form_input{
@@ -95,7 +97,10 @@ select {
     justify-content: center;
     
     gap: 1rem;
-    width: 600px;
+}
+
+.form_input input{
+    width: 300px;
 }
 
 .steps{
@@ -122,7 +127,7 @@ select {
     margin: 1rem;
 }
 
-.step--selected{
+.step--active{
     color: var(--color-bg);
     background-color: var(--color-text-muted);
 }

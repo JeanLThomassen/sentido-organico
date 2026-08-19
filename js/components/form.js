@@ -5,6 +5,7 @@ export function initBookingForm(root) {
     const form_panel = root.querySelectorAll('.form_panel');
 
     let currentStep = 0;
+    const maxIndex = stepPanel.length - 1;
     const steps = Array.from(step);
     const stepPanel = Array.from(form_panel);
 
@@ -14,15 +15,19 @@ export function initBookingForm(root) {
 
         stepPanel.forEach((_, i) => {
             stepPanel[i].classList.remove('form_panel--active');
-            steps[i].classList.remove('step--selected');
+            steps[i].classList.remove('step--active');
+
         });
+        
+        if(index === maxIndex){
+            nextBtnForm.textContext = "Confirmar";
+        }
 
         stepPanelOn.classList.add('form_panel--active');
-        stepOn.classList.add('step--selected');
+        stepOn.classList.add('step--active');
     }
 
     function goToStep(index) {
-        const maxIndex = stepPanel.length - 1;
 
         if (index > maxIndex) index = maxIndex;
         if (index < 0) index = 0;
@@ -31,10 +36,16 @@ export function initBookingForm(root) {
         update(currentStep);
     }
 
-    const next = () => goToStep(currentStep + 1);
+    const handleNextClick = () => {
+        if(currentStep == maxIndex){
+
+        } else {
+            goToStep(currentStep + 1)
+        }
+    }
     const prev = () => goToStep(currentStep - 1); 
 
-    nextBtnForm.addEventListener('click', next);
+    nextBtnForm.addEventListener('click', handleNextClick);
     prevBtnForm.addEventListener('click', prev); 
 
     update(currentStep);
