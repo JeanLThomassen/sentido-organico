@@ -19,8 +19,10 @@ export function initBookingForm(root) {
 
         });
         
-        if(index === maxIndex){
-            nextBtnForm.textContext = "Confirmar";
+        if (index === maxIndex) {
+            nextBtnForm.textContent = "Confirmar Cita";
+        } else {
+            nextBtnForm.textContent = "Siguiente";
         }
 
         stepPanelOn.classList.add('form_panel--active');
@@ -38,7 +40,7 @@ export function initBookingForm(root) {
 
     const handleNextClick = () => {
         if(currentStep == maxIndex){
-
+            update(currentStep);
         } else {
             goToStep(currentStep + 1);
         }
@@ -50,5 +52,5 @@ export function initBookingForm(root) {
 
     update(currentStep);
 
-    return { next, prev, goToStep };
+    return { handleNextClick, prev, goToStep };
 }
