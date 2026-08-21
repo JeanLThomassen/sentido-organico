@@ -252,40 +252,60 @@
                 </div>
 
                 <div class="form_panel" data-step="3">
-                    <div class="booking_header">
-                        <h3>Elegí el dia</h3>
-                        <hr>
+                    <div class="booking-header">
+                        <h3>Elegí tu turno</h3>
+                        <hr style="background-color: var(--color-border);">
                     </div>
-                    <div id="calendar" class="calendar">
-                        <div class="calendar__header">
-                            <button type="button" class="calendar__nav" id="prevMonth" aria-label="Mes anterior">
-                                <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                    <div class="form-group">
+                        <label for="dateTimeSelect">Fecha y hora</label>
+
+                        <div id="calendar" class="date-picker">
+                            <button type="button" class="date-select" id="dateTimeSelect">
+                                <small id="dateTimeSelectLabel">Seleccioná una fecha</small>
+                                <svg class="date-select__icon" viewBox="0 0 24 24" fill="none">
+                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                </svg>
                             </button>
-                            <span class="calendar__month" id="monthYearLabel">Agosto</span>
-                            <button type="button" class="calendar__nav" id="nextMonth" aria-label="Mes siguiente">
-                                <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-                            </button>
+
+                            <div class="calendar-popover" id="calendarPopover" hidden>
+
+                                <div id="calendarDaysView">
+                                    <div class="calendar__header">
+                                        <button type="button" class="calendar__nav" id="prevMonth" aria-label="Mes anterior">
+                                            <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2"/></svg>
+                                        </button>
+                                        <span class="calendar__month-year" id="monthYearLabel">Agosto 2026</span>
+                                        <button type="button" class="calendar__nav" id="nextMonth" aria-label="Mes siguiente">
+                                            <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/></svg>
+                                        </button>
+                                    </div>
+                                    <div class="calendar__weekdays">
+                                        <small>Dom</small><small>Lun</small><small>Mar</small><small>Mié</small><small>Jue</small><small>Vie</small><small>Sáb</small>
+                                    </div>
+                                    <div class="calendar__grid" id="calendarGrid"></div>
+                                </div>
+
+                                <div id="calendarTimesView" hidden>
+                                    <div class="calendar__header">
+                                        <button type="button" class="calendar__nav" id="backToDays" aria-label="Volver a fechas">
+                                            <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2"/></svg>
+                                        </button>
+                                        <span class="calendar__month-year" id="selectedDayLabel">15 de agosto</span>
+                                        <span style="width:20px"></span>
+                                    </div>
+                                    <div class="calendar__times" id="calendarTimes"></div>
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" id="appointmentDateTime" name="appointmentDateTime">
                         </div>
 
-                        <div class="calendar__weekdays">
-                            <span>Dom</span>
-                            <span>Lun</span>
-                            <span>Mar</span>
-                            <span>Mié</span>
-                            <span>Jue</span>
-                            <span>Vie</span>
-                            <span>Sáb</span>
-                        </div>
+                        <div id="resume_card">
 
-                        <div class="calendar__grid" id="calendarGrid">
-                            
-                        </div>
-
-                        <div class="calendar__times" id="calendarTimes">
-                            
                         </div>
                     </div>
-                </div>  
+                </div>
             <div>
             <button type="button" id="prevBtn" class="button-classic button">Anterior</button>
             <button type="button" id="nextBtn" class="button-classic button-diff">Siguiente</button>

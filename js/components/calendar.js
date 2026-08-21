@@ -1,89 +1,147 @@
 export function initCalendar(root) {
+    const monthNames = [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ];
+
     let currentDate = new Date();
     let selectedDate = null;
     let selectedTime = null;
-    
+
+    const schedule = ["10:00", "11:30", "13:00", "14:30"];
+
     const todayMonth = new Date().getMonth();
     const todayYear = new Date().getFullYear();
 
-    const schedule = ["09:00", "10:00", "11:30", "13:00", "14:30", "16:00"];
+    const trigger = root.querySelector('#dateTimeSelect');
+    const triggerLabel = root.querySelector('#dateTimeSelectLabel');
+    const popover = root.querySelector('#calendarPopover');
+    const daysView = root.querySelector('#calendarDaysView');
+    const timesView = root.querySelector('#calendarTimesView');
+    const grid = root.querySelector('#calendarGrid');
+    const monthYearLabel = root.querySelector('#monthYearLabel');
+    const selectedDayLabel = root.querySelector('#selectedDayLabel');
+    const timesContainer = root.querySelector('#calendarTimes');
+    const nextMonthBtn = root.querySelector('#nextMonth');
+    const prevMonthBtn = root.querySelector('#prevMonth');
+    const backToDaysBtn = root.querySelector('#backToDays');
+    const hiddenInput = root.querySelector('#appointmentDateTime');
 
-    
-    // let currentMonth = month;
-    // const maxIndex = month + 1;
-    
-    function renderDays(){
-        const grid = root.querySelector('#calendarGrid');
-        
-        let month = currentDate.getMonth();
-        let year = currentDate.getFullYear();
-        let totalDays = new Date(year, month + 1, 0).getDate(); 
-        let firstDayWeekday = new Date(year, month, 1).getDay();
+    function openPopover() {
+        popover.hidden = false;
+        showDaysView();
+    }
 
+    function closePopover() {
+        popover.hidden = true;
+    }
+
+    function togglePopover() {
+        popover.hidden ? openPopover() : closePopover();
+    }
+
+    function showDaysView() {
+        daysView.hidden = false;
+        timesView.hidden = true;
+    }
+
+    function showTimesView() {
+        daysView.hidden = true;
+        timesView.hidden = false;
+    }
+
+    function renderDays() {
+        const month = currentDate.getMonth();
+        const year = currentDate.getFullYear();
+        const totalDays = new Date(year, month + 1, 0).getDate();
+        const firstDayWeekday = new Date(year, month, 1).getDay();
+
+        monthYearLabel.textContent = `${monthNames[month]} ${year}`;
         grid.innerHTML = '';
 
-        for (let i = 0; i < firstDayWeekday; i++){
-            const emptyCell = document.createElement('div');
-            grid.appendChild(emptyCell);
+        for (let i = 0; i < firstDayWeekday; i++) {
+            grid.appendChild(document.createElement('div'));
         }
 
-        for (let day = 1; day <= totalDays; day++){
+        for (let day = 1; day <= totalDays; day++) {
             const dayBtn = document.createElement('button');
+            dayBtn.type = 'button';
             dayBtn.textContent = day;
             dayBtn.classList.add('btn_day');
-            grid.appendChild(dayBtn);
 
             dayBtn.addEventListener('click', () => {
                 selectedDate = new Date(year, month, day);
-
-                const allDayButtons = grid.querySelectorAll('.btn_day');
-                allDayButtons.forEach(btn => {
-                    btn.classList.remove('btn_day--selected');
-                    
-                });
-                
-                dayBtn.classList.add('btn_day--selected');
-
-                const timesContainer = root.querySelector('#calendarTimes');
-                timesContainer.innerHTML = '';
-
-                schedule.forEach(time => {
-                    const timeBtn = document.createElement('button');
-                    timeBtn.textContent = time;
-                    timeBtn.classList.add('btn_time');
-                    timesContainer.appendChild(timeBtn);
-
-                    timeBtn.addEventListener('click', () => {
-                        selectedTime = time;
-
-                        const allTimeButtons = timesContainer.querySelectorAll('.btn_time');
-                        allTimeButtons.forEach(btnTime => {
-                            btnTime.classList.remove('btn_time--selected');
-                        })
-
-                        timeBtn.classList.add('btn_time--selected');
-                    })
-                })
-
-
+                renderTimes();
+                showTimesView();
             });
-        }
 
-        
+            grid.appendChild(dayBtn);
+        }
     }
 
-    const nextMonthBtn = root.querySelector('#nextMonth');
-    const prevMonthBtn = root.querySelector('#prevMonth');
+    function renderTimes() {
+        const dayNumber = selectedDate.getDate();
+        const monthName = monthNames[selectedDate.getMonth()].toLowerCase();
+        selectedDayLabel.textContent = `${dayNumber} de ${monthName}`;
+
+        timesContainer.innerHTML = '';
+
+        schedule.forEach(time => {
+            const timeBtn = document.createElement('button');
+            timeBtn.type = 'button';
+            timeBtn.textContent = time;
+            timeBtn.classList.add('btn_time');
+
+            timeBtn.addEventListener('click', () => {
+                selectedTime = time;
+                confirmSelection();
+            });
+
+            timesContainer.appendChild(timeBtn);
+        });
+    }
+
+    function confirmSelection() {
+        const dayNumber = selectedDate.getDate();
+        const monthName = monthNames[selectedDate.getMonth()].toLowerCase();
+        triggerLabel.textContent = `${dayNumber} de ${monthName}, ${selectedTime}`;
+
+        if (hiddenInput) {
+            const isoDate = selectedDate.toISOString().split('T')[0];
+            hiddenInput.value = `${isoDate} ${selectedTime}`;
+        }
+
+        closePopover();
+    }
+
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePopover();
+    });
+
+    backToDaysBtn.addEventListener('click', showDaysView);
 
     nextMonthBtn.addEventListener('click', () => {
-        // if(){
-
-        // }
-    })
+        const monthsDiff = (currentDate.getFullYear() - todayYear) * 12 + (currentDate.getMonth() - todayMonth);
+        if (monthsDiff === 1) return;
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderDays();
+    });
 
     prevMonthBtn.addEventListener('click', () => {
+        const monthsDiff = (currentDate.getFullYear() - todayYear) * 12 + (currentDate.getMonth() - todayMonth);
+        if (monthsDiff === 0) return;
         currentDate.setMonth(currentDate.getMonth() - 1);
-    })
+        renderDays();
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!root.contains(e.target)) closePopover();
+    });
 
     renderDays();
+
+    return {
+        getSelection: () => ({ selectedDate, selectedTime })
+    };
 }
