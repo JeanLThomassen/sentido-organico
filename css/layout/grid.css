@@ -44,6 +44,43 @@ main {
     margin-right: 1rem;
 }
 
+
+/* 1. Definimos la animación (el viaje desde abajo y transparente, hacia arriba y visible) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* Empieza 30px más abajo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original */
+    }
+}
+
+.hero_text div, /* El bloque del texto chico y el ícono */
+.hero_text h1, 
+.hero_text p,
+.hero > div:last-child /* El contenedor de los botones de reserva */ {
+    opacity: 0; /* Ocultos al inicio */
+    animation: fadeInUp 0.8s ease-out forwards; /* 'forwards' hace que se queden visibles al terminar */
+}
+
+/* 3. Magia del escalonado (Stagger effect): les damos un orden de aparición */
+.hero_text div {
+    animation-delay: 0.2s; /* Aparece casi enseguida */
+}
+
+.hero_text h1 {
+    animation-delay: 0.4s; /* Aparece un poquito después */
+}
+
+.hero_text p {
+    animation-delay: 0.6s; /* Le sigue el párrafo */
+}
+
+.hero > div:last-child {
+    animation-delay: 0.8s; /* Por último, los botones */
+}
 /* ----------- SECTION / SERVICES ----------- */
 
 .service_text{
