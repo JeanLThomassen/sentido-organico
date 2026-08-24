@@ -70,7 +70,7 @@ select {
     display: block;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(12px);
+    transform: translateX(12px);
     transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
     position: absolute;
 
@@ -81,7 +81,7 @@ select {
 .form_panel--active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(0);
     transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0s;
     position: relative;
 }

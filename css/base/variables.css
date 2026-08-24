@@ -40,8 +40,9 @@ body {
 }
 
 .button {
-  background-color: var(--color-accent);
-  color: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  background-color: var(--color-bg);
+  color: var(--color-accent);
 }
 
 .button:hover {
@@ -51,13 +52,14 @@ body {
 }
 
 .button-diff {
-  background-color: var(--color-text-muted);
+  background-color: var(--color-text);
   color: var(--color-bg);
 }
 
 .button-diff:hover {
     color: var(--color-bg);
-    background-color: var(--color-text);
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--color-text-muted);
     text-decoration: none;
 }
 
