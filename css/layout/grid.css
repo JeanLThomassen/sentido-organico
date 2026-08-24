@@ -19,30 +19,22 @@ main {
     width: 100%;
 }
 
-.hero-text{
+.hero_text{
     text-align: center;
     max-width: 100%;
     line-height: 1rem;
 }
 
-.hero svg{
-    margin-left: 0.25rem;
-    width: 25px;
-}
-
 .hero h1{
     font-size: var(--font-size-xxxl);
+    font-family: var(--font-hero-title);
     color: var(--color-text-dark);
 }
 
-.hero .text-light{
-    font-size: var(--font-size-md);
-    margin-top: 1rem;
-}
-
 .hero p {
-    font-size: var(--font-size-md);
-    margin-top: 1rem;
+    font-family: var(--font-hero-subtitle);
+    font-size: var(--font-size-xxl);
+    font-weight: 100;
     letter-spacing: 0.5rem;
     color: var(--color-text-dark);
 }
@@ -61,16 +53,7 @@ main {
     margin-bottom: 3rem;
 }
 
-.services_container{
-    display: flex;
-    flex-direction: row;
 
-    padding: 1rem;
-}
-
-.services_image_container{
-    
-}
 
 /* ----------- SECTION / ABOUT ----------- */
 .container .text-muted{

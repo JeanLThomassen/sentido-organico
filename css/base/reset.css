@@ -9,14 +9,11 @@ html{
     scroll-padding-top: var(--header-height);
 }
 
-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000; /* Asegura que quede por encima del contenido */
-  background-color: #ffffff; /* Evita que el contenido de fondo se traslape */
+fieldset {
+    all: unset;
 }
 
-hr{
+hr {
     border: none;           
     height: 1px;              
     background-color: var(--color-line);  
@@ -29,7 +26,7 @@ section {
     height: 100vh;
 }
 
-svg {
+.img_svg {
     width: 25px;
 }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-mx">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,41 +9,30 @@
 <body>
     <header>
         <div>
-            <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier"> <path d="M7.5 15V7M7.5 7.5V10.5M7.5 7.5C7.5 5.29086 5.70914 3.5 3.5 3.5H0.5V6.5C0.5 8.70914 2.29086 
-            10.5 4.5 10.5H7.5M7.5 7.5H10.5C12.7091 7.5 14.5 5.70914 14.5 3.5V0.5H11.5C9.29086 0.5 7.5 2.29086 7.5 4.5V7.5ZM7.5 7.5L11.5 3.5M7.5 10.5L3.5 6.5" stroke="#90bc7f"></path> </g></svg>
+            <img class="img_svg" src="assets/icons/logo.svg" alt="Logo Sentido Organico">
             <span>Sentido Orgánico</span>
         </div>
+
         <div>
             <nav>
                 <a href="#home">Inicio</a>
                 <a href="#services">Servicios</a>
                 <a href="#about">Nosotros</a>
                 <a href="#location">¿Donde Estamos?</a>
+                <a class="button_header" href="#booking">Reservar Turno</a>
             </nav>
-        </div>
-        <div>
-            <a class="button-header button" href="#booking">Reservar Turno</a>
         </div>
     </header>
 
     <main id="home">
         <div class="hero container">        
-            <div class="hero-text">
-                <div>
-                    <small class="text-light">Estética y peluquería orgánica</small>
-                    <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier"> <path d="M7.5 15V7M7.5 7.5V10.5M7.5 7.5C7.5 5.29086 5.70914 3.5 3.5 3.5H0.5V6.5C0.5 8.70914 2.29086 
-                        10.5 4.5 10.5H7.5M7.5 7.5H10.5C12.7091 7.5 14.5 5.70914 14.5 3.5V0.5H11.5C9.29086 0.5 7.5 2.29086 7.5 4.5V7.5ZM7.5 7.5L11.5 3.5M7.5 10.5L3.5 6.5" stroke="#90bc7f"></path> </g></svg>
-                </div>
+            <div class="hero_text">
                 <h1>Sentido Orgánico</h1>
                 <p class="text-light">Elegí priorizar tu salud capilar.</p>
             </div>
             <div>
-                <a class="button-classic button" href="#booking">Reservar Turno</a>
-                <a class="button-classic button-diff" href="#about">Conoce más</a>
+                <a class="button_classic" href="#booking">Reservar Cita</a>
+                <a class="button_classic-diff" href="#services">Conocer Más</a>
             </div>
         </div>
     </main>
@@ -55,7 +44,7 @@
             <hr>
             <p>Una experiencia personalizada, tranquila y cuidada, Unica para vos. </p>
         </div>
-        <!-- <div class="slider" id="slider">
+        <div class="slider" id="slider">
             <div class="slider__track" id="sliderTrack">
 
                 <div class="slider__slide">
@@ -70,7 +59,7 @@
                             <hr>
                             <div>
                                 <a class="button-classic button" href="#booking">Reservar Cita</a>
-                                <a class="button-classic button-diff" href="#about">Conoce más</a>
+                                <!-- <a class="button-classic button-diff" href="#about">Conoce más</a> -->
                             </div>
                         </div>
                     </div>
@@ -88,7 +77,7 @@
                             <hr>
                             <div>
                                 <a class="button-classic button" href="#booking">Reservar Cita</a>
-                                <a class="button-classic button-diff" href="#about">Conoce más</a>
+                                <!-- <a class="button-classic button-diff" href="#about">Conoce más</a> -->
                             </div>
                         </div>
                     </div>
@@ -105,7 +94,7 @@
                             <hr>
                             <div>
                                 <a class="button-classic button" href="#booking">Reservar Cita</a>
-                                <a class="button-classic button-diff" href="#about">Conoce más</a>
+                                <!-- <a class="button-classic button-diff" href="#about">Conoce más</a> -->
                             </div>
                         </div>
                     </div>
@@ -115,33 +104,12 @@
 
             <div class="slider__controls">
                 <button class="slider__btn slider__btn--prev" aria-label="Anterior">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                    <svg  aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
                 </button>
                 <div class="slider__dots" id="sliderDots"></div>
                 <button class="slider__btn slider__btn--next" aria-label="Siguiente">
-                    <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none"/></svg>
                 </button>
-            </div>
-        </div> -->
-        <div class="services_container">
-            <div>
-                <h3>Hace ese cambio que te mereces</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, alias distinctio necessitatibus et, 
-                    dolorum reprehenderit saepe rerum porro non, vero sapiente temporibus. Vitae impedit ipsum dicta deserunt 
-                    perspiciatis consequatur ipsam?
-                </p>
-            </div>
-            <div class="services_image_container">
-                <div class="image_card">
-                    <img src="/assets/images/servicio1.png" alt="">
-                </div>
-                <div class="image_card">
-                    <img src="/assets/images/servicio2.png" alt="">
-                </div>
-                <div class="image_card">
-                    <img src="/assets/images/servicio3.png" alt="">
-                </div>
             </div>
         </div>
     </section>
@@ -210,131 +178,138 @@
         <div class="container">
             <span class="section-title">Reserva tu Cita</span>
             <h2>Agenda tu cita</h2>
-            <div></div>
             <hr>
             <p>Reserva tu cita en 3 simples pasos</p>
-        </div>
-        <form>
-            <div id="bookingForm" class="form_card">
-                <div class="steps">
-                    <div class="step">
-                        <span>1</span>
-                        <small>DATOS</small>
-                    </div>
-                    <div class="step">
-                        <span>2</span>
-                        <small>SERVICIO</small>
-                    </div>
-                    <div class="step">
-                        <span>3</span>
-                        <small>TURNO</small>
-                    </div>
-                </div>
-                <div class="form_panel" data-step="1">
-                    <div class="booking_header">
-                        <h3>Tus Datos</h3>
-                        <hr>
-                    </div>
-                    <div class="form_group">
-                        <label for="name">Nombre completo</label>
-                        <input type="text" placeholder="Ej: Yael..." required>
-                        <div class="form_input">
-                            <div>
-                                <label for="email">Correo Electronico</label>
-                                <input type="email" placeholder="yael@gmail.com" required>
-                            </div>
-                            <div>
-                                <label for="tel">Telefono</label>
-                                <input type="number" placeholder="24956856..." required>
-                            </div>
+            <form>
+                <div id="bookingForm" class="form_card">
+                    <div class="steps">
+                        <div class="step">
+                            <span>1</span>
+                            <small>DATOS</small>
+                        </div>
+                        <div class="step">
+                            <span>2</span>
+                            <small>SERVICIO</small>
+                        </div>
+                        <div class="step">
+                            <span>3</span>
+                            <small>TURNO</small>
                         </div>
                     </div>
-                </div>
-
-                <div class="form_panel" data-step="2">
-                    <div class="booking_header">
-                        <h3>Elegí el servicio</h3>
-                        <hr>
-                    </div>
-                    <div class="form_group">
-                        <label for="service-select">Servicio</label>
-                        <select id="service-select">
-                            <option value="corte">Corte</option>
-                            <option value="color-b">Color barros</option>
-                            <option value="color-r">Color raiz</option>
-                            <option value="color-c">Color completo</option>
-                            <option value="mechas">Mechas</option>
-                            <option value="balayage">Balayage</option>
-                            <option value="tratamiento-a">Tratamientos ayurveicos</option>
-                            <option value="tratamiento-ldf">Tratamientos libre de formol</option>
-                            <option value="p-m">Peinados y Maquillaje</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form_panel" data-step="3">
-                    <div class="booking_header">
-                        <h3>Elegí tu turno</h3>
-                        <hr style="background-color: var(--color-border);">
-                    </div>
-                    <div class="form-group">
-                        <label for="dateTimeSelect">Fecha y hora</label>
-
-                        <div id="calendar" class="date-picker">
-                            <button type="button" class="date-select" id="dateTimeSelect">
-                                <small id="dateTimeSelectLabel">Seleccioná una fecha</small>
-                                <svg class="date-select__icon" viewBox="0 0 24 24" fill="none">
-                                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
-                                </svg>
-                            </button>
-
-                            <div class="calendar-popover" id="calendarPopover" hidden>
-
-                                <div id="calendarDaysView">
-                                    <div class="calendar__header">
-                                        <button type="button" class="calendar__nav" id="prevMonth" aria-label="Mes anterior">
-                                            <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2"/></svg>
-                                        </button>
-                                        <span class="calendar__month-year" id="monthYearLabel">Agosto 2026</span>
-                                        <button type="button" class="calendar__nav" id="nextMonth" aria-label="Mes siguiente">
-                                            <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/></svg>
-                                        </button>
-                                    </div>
-                                    <div class="calendar__weekdays">
-                                        <small>Dom</small><small>Lun</small><small>Mar</small><small>Mié</small><small>Jue</small><small>Vie</small><small>Sáb</small>
-                                    </div>
-                                    <div class="calendar__grid" id="calendarGrid"></div>
+                    <fieldset class="form_panel" data-step="1">
+                        <legend class="booking_header">
+                            <h3>Tus Datos</h3>
+                            <hr>
+                        </legend>
+                        <div class="form_group">
+                            <label for="name">Nombre completo</label>
+                            <input type="text" placeholder="Ej: Yael..." required>
+                            <div class="form_input">
+                                <div>
+                                    <label for="email">Correo Electronico</label>
+                                    <input type="email" placeholder="yael@gmail.com" required>
                                 </div>
-
-                                <div id="calendarTimesView" hidden>
-                                    <div class="calendar__header">
-                                        <button type="button" class="calendar__nav" id="backToDays" aria-label="Volver a fechas">
-                                            <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2"/></svg>
-                                        </button>
-                                        <span class="calendar__month-year" id="selectedDayLabel">15 de agosto</span>
-                                        <span style="width:20px"></span>
-                                    </div>
-                                    <div class="calendar__times" id="calendarTimes"></div>
+                                <div>
+                                    <label for="tel">Telefono</label>
+                                    <input type="number" placeholder="24956856..." required>
                                 </div>
-
                             </div>
-
-                            <input type="hidden" id="appointmentDateTime" name="appointmentDateTime">
                         </div>
-
-                        <div id="resume_card">
-
+                    </fieldset>
+    
+                    <fieldset class="form_panel" data-step="2">
+                        <legend class="booking_header">
+                            <h3>Elegí el servicio</h3>
+                            <hr>
+                        </legend>
+                        <div class="form_group">
+                            <label for="service-select">Servicio</label>
+                            <select id="service-select">
+                                <option value="corte">Corte</option>
+                                <option value="color-b">Color barros</option>
+                                <option value="color-r">Color raiz</option>
+                                <option value="color-c">Color completo</option>
+                                <option value="mechas">Mechas</option>
+                                <option value="balayage">Balayage</option>
+                                <option value="tratamiento-a">Tratamientos ayurveicos</option>
+                                <option value="tratamiento-ldf">Tratamientos libre de formol</option>
+                                <option value="p-m">Peinados y Maquillaje</option>
+                            </select>
                         </div>
-                    </div>
-                </div>
-            <div>
-            <button type="button" id="prevBtn" class="button-classic button">Anterior</button>
-            <button type="button" id="nextBtn" class="button-classic button-diff">Siguiente</button>
+                    </fieldset>
+    
+                    <fieldset class="form_panel" data-step="3">
+                        <legend class="booking_header">
+                            <h3>Elegí tu turno</h3>
+                            <hr>
+                        </legend>
+                        <div class="form-group">
+                            <label for="dateTimeSelect">Fecha y hora</label>
+    
+                            <div id="calendar" class="date-picker">
+                                <button type="button" class="date-select" id="dateTimeSelect">
+                                    <small id="dateTimeSelectLabel">Seleccioná una fecha</small>
+                                    <svg aria-hidden="true" class="date-select__icon" viewBox="0 0 24 24" fill="none">
+                                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </button>
+    
+                                <div class="calendar-popover" id="calendarPopover" hidden>
+    
+                                    <div id="calendarDaysView">
+                                        <div class="calendar__header">
+                                            <button type="button" class="calendar__nav" id="prevMonth" aria-label="Mes anterior">
+                                                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2"/></svg>
+                                            </button>
+                                            <span class="calendar__month-year" id="monthYearLabel">Agosto 2026</span>
+                                            <button type="button" class="calendar__nav" id="nextMonth" aria-label="Mes siguiente">
+                                                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/></svg>
+                                            </button>
+                                        </div>
+                                        <div class="calendar__weekdays">
+                                            <small>Dom</small><small>Lun</small><small>Mar</small><small>Mié</small><small>Jue</small><small>Vie</small><small>Sáb</small>
+                                        </div>
+                                        <div class="calendar__grid" id="calendarGrid"></div>
+                                    </div>
+    
+                                    <div id="calendarTimesView" hidden>
+                                        <div class="calendar__header">
+                                            <button type="button" class="calendar__nav" id="backToDays" aria-label="Volver a fechas">
+                                                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2"/></svg>
+                                            </button>
+                                            <span class="calendar__month-year" id="selectedDayLabel">15 de agosto</span>
+                                            <span style="width:20px"></span>
+                                        </div>
+                                        <div class="calendar__times" id="calendarTimes"></div>
+                                    </div>
+    
+                                </div>
+    
+                                <input type="hidden" id="appointmentDateTime" name="appointmentDateTime">
+                            </div>
+    
+                            <div id="resume_card">
+    
+                            </div>
+                        </div>
+                    </fieldset>
+                <div>
+                <button type="button" id="prevBtn" class="button-classic button">Anterior</button>
+                <button type="button" id="nextBtn" class="button-classic button-diff">Siguiente</button>
+            </div>
+            </div>
+            </form>
+            <div class="container">
+                <small>¿TENÉS ALGUNA DUDA?</small>
+                <h3>Hablemos de tu próximo look</h3>
+                <p>Consultame antes de reservar para asegurarnos de elegir 
+                el mejor tratamiento para tu pelo, o avisame si precisás reprogramar.</p>
+                <a href="" target="_blank">ESCRIBIR POR WHATSAPP</a>
+            </div>
         </div>
-        </div>
-    </form>
     </section>
     
+
     <footer>
         <div>
             <a href="#home"><span>Sentido Orgánico</span></a>
@@ -343,7 +318,7 @@
         <div>
             <span>Contacto</span>
             <a href="https://maps.app.goo.gl/qnEixsWtabCcGZma6" target="_blank">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" 
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" 
                 stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2848 18.9935C12.1567 
                 19.0875 12.0373 19.1728 11.9282 19.2493C11.8118 19.1721 11.6827 19.0833 11.5427 18.9832C10.8826 18.5109 10.0265 17.8176 9.18338 16.9529C7.45402 15.1792 6 
                 12.9151 6 10.5C6 7.18629 8.68629 4.5 12 4.5C15.3137 4.5 18 7.18629 18 10.5C18 12.8892 16.4819 15.1468 14.6893 16.9393C13.8196 17.8091 12.9444 18.5099 12.2848 
@@ -353,7 +328,7 @@
                 <small>Guemes Norte 1774, Tandil, Argentina</small>
             </a>
             <a href="" target="_blank">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" 
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" 
                 stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17.6 6.31999C16.8669 5.58141 15.9943 4.99596 15.033 4.59767C14.0716 
                 4.19938 13.0406 3.99622 12 3.99999C10.6089 4.00135 9.24248 4.36819 8.03771 5.06377C6.83294 5.75935 5.83208 6.75926 5.13534 7.96335C4.4386 9.16745 4.07046 10.5335 
                 4.06776 11.9246C4.06507 13.3158 4.42793 14.6832 5.12 15.89L4 20L8.2 18.9C9.35975 19.5452 10.6629 19.8891 11.99 19.9C14.0997 19.9001 16.124 19.0668 17.6222 17.5816C19.1205 
@@ -370,7 +345,8 @@
         </div>
         <div>
             <span>Redes Sociales</span>
-            <a href="https://www.instagram.com/sentido_organicotandil/" target="_blank"><svg viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" 
+            <a href="https://www.instagram.com/sentido_organicotandil/" target="_blank">
+                <svg aria-hidden="true" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" 
                 stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5 5H9.5C7.29086 5
                 5.5 6.79086 5.5 9V15C5.5 17.2091 7.29086 19 9.5 19H15.5C17.7091 19 19.5 17.2091 19.5 15V9C19.5 6.79086 17.7091 5 15.5 5Z" stroke="#7A6B5D" stroke-width="1.5"
                 stroke-linecap="round" stroke-linejoin="round"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 15C10.8431 15 9.5 13.6569 9.5 12C9.5 10.3431 
@@ -380,7 +356,7 @@
                 <small>Instagram</small>
             </a>
             <a href="" target="_blank">
-                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" 
+                 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" 
                 stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 12.05C19.9813 10.5255 19.5273 9.03809 18.6915 7.76295C17.8557 
                 6.48781 16.673 5.47804 15.2826 4.85257C13.8921 4.2271 12.3519 4.01198 10.8433 4.23253C9.33473 4.45309 7.92057 5.10013 6.7674 6.09748C5.61422 7.09482 4.77005 
                 8.40092 4.3343 9.86195C3.89856 11.323 3.88938 12.8781 4.30786 14.3442C4.72634 15.8103 5.55504 17.1262 6.69637 18.1371C7.83769 19.148 9.24412 19.8117 10.75 

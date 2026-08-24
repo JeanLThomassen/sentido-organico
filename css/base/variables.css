@@ -39,30 +39,6 @@ body {
   border: 1px solid var(--color-border);
 }
 
-.button {
-  border: 1px solid var(--color-accent);
-  background-color: var(--color-bg);
-  color: var(--color-accent);
-}
-
-.button:hover {
-    color: var(--color-bg);
-    background-color: var(--color-accent-dark);
-    text-decoration: none;
-}
-
-.button-diff {
-  background-color: var(--color-text);
-  color: var(--color-bg);
-}
-
-.button-diff:hover {
-    color: var(--color-bg);
-    background-color: var(--color-bg-dark);
-    border: 1px solid var(--color-text-muted);
-    text-decoration: none;
-}
-
 .text-muted {
   color: var(--color-text-muted);
 }

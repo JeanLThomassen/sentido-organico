@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lora:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dynalight&family=Tangerine:wght@400;700&display=swap');
 
 :root {
   /* Familias tipográficas */
   --font-heading: 'Lora', serif;        /* para títulos, algo con carácter */
   --font-body: 'Poppins', sans-serif;   /* para texto general, legible */
+  --font-hero-title: 'Limelight', serif;
+  --font-hero-subtitle: 'Tangerine', sans-serif;
 
   /* Escala de tamaños (basada en rem, escala modular) */
   --font-size-xs: 0.75rem;    /* 12px */
@@ -66,13 +69,7 @@ small, .text-sm, input, label {
 }
 
 a {
-  color: var(--color-accent);
   text-decoration: none;
-}
-
-a:hover {
-  color: var(--color-accent-dark);
-  text-decoration: underline;
 }
 
 strong, b {

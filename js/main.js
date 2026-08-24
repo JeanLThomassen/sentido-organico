@@ -10,3 +10,15 @@ if (bookingFormEl) initBookingForm(bookingFormEl);
 
 const calendarEl = document.getElementById('calendar');
 if (calendarEl) initCalendar(calendarEl);
+
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+    // Si el usuario baja más de 50 píxeles, se activa el fondo
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        // Si vuelve arriba de todo, vuelve a ser transparente
+        header.classList.remove('scrolled');
+    }
+});
