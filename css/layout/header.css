@@ -68,3 +68,17 @@ header.scrolled nav a {
     color: var(--color-text); 
     text-shadow: none;
 }
+
+header > div:first-child {
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+header.scrolled > div:first-child {
+    opacity: 0; 
+    visibility: hidden; 
+    transform: translateY(-10px); 
+    pointer-events: none;
+}

@@ -57,14 +57,12 @@ main {
     }
 }
 
-.hero_text div, /* El bloque del texto chico y el ícono */
+.hero_text div, 
 .hero_text h1, 
 .hero_text p,
 .hero > div:last-child /* El contenedor de los botones de reserva */ {
-    opacity: 0; /* Ocultos al inicio */
-    animation: fadeInUp 0.8s ease-out forwards; /* 'forwards' hace que se queden visibles al terminar */
-}
-
+    opacity: 0; 
+    animation: fadeInUp 0.8s ease-out forwards; }
 /* 3. Magia del escalonado (Stagger effect): les damos un orden de aparición */
 .hero_text div {
     animation-delay: 0.2s; /* Aparece casi enseguida */
