@@ -1,3 +1,5 @@
+// import { animate } from 'animejs';
+// const { animate } = require('animejs');
 import {initBookingForm} from './components/form.js';
 import { initSlider } from './components/slider.js';
 import { initCalendar } from './components/calendar.js';
