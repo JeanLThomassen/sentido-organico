@@ -88,7 +88,36 @@ main {
     margin-bottom: 3rem;
 }
 
+.service_case_img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 2rem;
+}
 
+.service_case_img img{
+    width: 275px;
+    height: 300px;
+
+    
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.service_case_explain{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.service_case_explain div{
+    padding: 1rem;
+    width: 50%;
+    height: 150px;
+    border-radius: .25rem;
+    background-color: var(--color-border);
+}
 
 /* ----------- SECTION / ABOUT ----------- */
 .container .text-muted{
