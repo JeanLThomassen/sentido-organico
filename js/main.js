@@ -24,3 +24,19 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
+
+const reveals = document.querySelectorAll('section, .service_case img, .about-text');
+
+// Les agregamos la clase inicial a todos
+reveals.forEach(el => el.classList.add('reveal'));
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Solo se anima la primera vez
+        }
+    });
+}, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+
+reveals.forEach(el => revealObserver.observe(el));
