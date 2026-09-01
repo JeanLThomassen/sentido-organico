@@ -18,8 +18,9 @@ hr {
 }
 
 section {
-    padding: 10px;
-    height: 100vh;
+    padding: 3rem 1rem; /* Crea un espacio uniforme de separación arriba y abajo */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .img_svg {
@@ -35,10 +36,6 @@ section {
 
 .container span{
     color: var(--color-text-light);
-}
-
-.jump{
-    width: 60%;
 }
 
 .section-title{
