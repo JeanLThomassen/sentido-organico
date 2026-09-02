@@ -1,8 +1,7 @@
-// import { animate } from 'animejs';
-// const { animate } = require('animejs');
-import {initBookingForm} from './components/form.js';
 import { initSlider } from './components/slider.js';
+import { initBookingForm } from './components/form.js';
 import { initCalendar } from './components/calendar.js';
+import { initContactWidget } from './components/contact-widget.js';
 
 const sliderEl = document.getElementById('slider');
 if (sliderEl) initSlider(sliderEl);
@@ -12,6 +11,8 @@ if (bookingFormEl) initBookingForm(bookingFormEl);
 
 const calendarEl = document.getElementById('calendar');
 if (calendarEl) initCalendar(calendarEl);
+
+initContactWidget(document);
 
 const header = document.querySelector('header');
 
@@ -25,7 +26,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-const reveals = document.querySelectorAll('section, .service_case img, .about-text');
+const reveals = document.querySelectorAll('section, .service_case img, .about-text, contact-inline');
 
 // Les agregamos la clase inicial a todos
 reveals.forEach(el => el.classList.add('reveal'));

@@ -1,0 +1,74 @@
+.contact-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 900;
+    max-width: 280px;
+
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.contact-widget--hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.contact-widget__close {
+    all: unset;
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    line-height: 1;
+}
+
+.contact-widget small,
+.contact-inline small {
+    color: var(--color-text-muted);
+    letter-spacing: 0.05rem;
+}
+
+.contact-widget h3,
+.contact-inline h3 {
+    font-size: var(--font-size-md);
+    margin: 0.5rem 0;
+}
+
+.contact-widget p,
+.contact-inline p {
+    font-size: var(--font-size-sm);
+    margin-bottom: 0.75rem;
+}
+
+.contact-widget a,
+.contact-inline a {
+    display: inline-block;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent);
+}
+
+.contact-inline {
+    display: none;
+    max-width: 420px;
+    margin: 2rem auto 0;
+    text-align: center;
+
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.contact-inline--visible {
+    display: block;
+}
