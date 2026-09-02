@@ -95,7 +95,7 @@ main {
     grid-auto-rows: 300px;
     gap: 1.5rem;
     width: 90%;
-    max-width: 1500px;
+    max-width: 1000px;
     margin: 0 auto;
     padding-top: 2rem;
     grid-auto-flow: dense; /* Rellena los huecos automáticamente */
