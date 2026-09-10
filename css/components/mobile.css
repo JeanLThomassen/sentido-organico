@@ -1,46 +1,155 @@
-/* Este código SOLO se activa en pantallas menores a 768px (celulares y tablets chicas) */
+/* Este código SOLO se activa en pantallas menores a 768px (celulares y tablets) */
 @media screen and (max-width: 768px) {
     
-    /* 1. Evitar que el contenido se salga de la pantalla */
-    body, html {
-        overflow-x: hidden;
-        width: 100%;
-        margin: 0;
-        padding: 0;
+    /* 1. Base y Espaciado Universal para móvil */
+    body {
+        padding: 15px; /* Padding general constante para que nada toque los bordes del celu */
+        font-size: 15px; /* Fuente base ligeramente más pequeña para mejor legibilidad */
+        line-height: 1.5; /* Mayor interlineado para descanso visual */
     }
 
-    /* 2. Convertir estructuras de lado a lado en estructuras de arriba a abajo */
-    /* (Si usaste flexbox para dividir la pantalla, esto apila las columnas) */
-    .container, .row, form {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding: 10px;
-    }
+    /* 2. Tipografía simplificada y centrada para móvil */
+    h1 { font-size: 26px; text-align: center; margin-bottom: 20px; margin-top: 10px; }
+    h2 { font-size: 22px; text-align: center; margin-top: 25px; margin-bottom: 15px; }
+    h3 { font-size: 18px; margin-top: 20px; margin-bottom: 10px; }
+    p { margin-bottom: 15px; }
 
-    /* 3. Hacer que las imágenes no se deformen y entren en la pantalla */
+    /* 3. Escalamiento universal de imágenes (centradas por defecto) */
     img {
         max-width: 100%;
         height: auto;
+        display: block;
+        margin: 0 auto; /* Centra las imágenes si son más chicas que el ancho de pantalla */
     }
 
-    /* 4. Ajustar el contenedor de los horarios para que los botones entren bien */
-    #times-container, .horarios-grid {
+    /* 4. Contenedores generales (apilar y centrar contenido) */
+    /* (Clases comunes que podrías tener: .container, .row, .hair-salon-section) */
+    .container, .main-content, .reserve-section, form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra todo el contenido en el móvil */
+        padding: 10px 0; /* Espaciado vertical */
+    }
+
+    /* 5. Estilo mejorado para Formularios e Inputs en móvil (fáciles de tocar) */
+    .form-container form, form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 10px; /* Padding interno horizontal ligero */
+    }
+
+    /* Estilo para labels de formulario */
+    .form-label, label {
+        font-size: 14px; /* Texto de label ligeramente más chico */
+        margin-bottom: 5px;
+        display: block;
+        align-self: flex-start; /* Alinea los labels a la izquierda */
+    }
+
+    /* Aplica estilos a todos los tipos de input, select y textarea */
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+        width: 100%;
+        padding: 14px; /* Target de toque extra grande */
+        font-size: 16px !important; /* Fuerza a iOS a no hacer zoom automático al escribir */
+        margin-bottom: 15px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        box-sizing: border-box; /* Crucial para que el padding no desborde el ancho */
+    }
+
+    /* 6. Mejoras en la cuadrícula de Horarios (dos columnas de botones grandes) */
+    #times-container, .time-slots-grid {
+        width: 100%;
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas de botones en el celu */
-        gap: 10px;
-        width: 100%;
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas centradas, ancho completo */
+        gap: 15px; /* Buen espaciado entre botones */
+        justify-items: center;
+        margin-top: 15px;
+        padding: 0 10px;
     }
 
-    /* 5. Agrandar los botones de los turnos para que sea fácil tocarlos con el dedo */
-    button, input, select {
-        width: 100%;
-        padding: 15px;
-        font-size: 16px; /* Evita que el iPhone haga zoom automático al escribir */
-        margin-bottom: 10px;
+    /* Botones de horarios individuales */
+    #times-container button, .time-slots-grid button {
+        width: 100%; /* Llenar la celda de la cuadrícula */
+        max-width: 160px; /* Pero no crecer demasiado */
+        height: 55px; /* Altura táctil vertical cómoda */
+        font-size: 16px;
+        padding: 10px;
+        margin: 0;
+        border-radius: 8px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.2s;
     }
 
-    /* 6. Reducir un poco los títulos para que no ocupen media pantalla */
-    h1 { font-size: 24px; }
-    h2 { font-size: 20px; }
+    /* Definir estados para los botones de horarios (opcional, ajustá a tu JS) */
+    #times-container button.available, .time-slots-grid button.available {
+        background-color: #e2f9e1; /* Verde clarito, listo */
+        color: #333;
+        border: 1px solid #b7e9b6;
+    }
+
+    #times-container button.selected, .time-slots-grid button.selected {
+        background-color: #2e8b57; /* Sea green, seleccionado */
+        color: white;
+        border: none;
+        font-weight: bold;
+    }
+
+    #times-container button:disabled, .time-slots-grid button:disabled {
+        background-color: #eee;
+        color: #999;
+        border: none;
+        box-shadow: none;
+        cursor: not-serif;
+    }
+
+    /* 7. Estilo de Botón Principal para móvil (ancho completo y grande) */
+    .button-primary, button[type="submit"] {
+        width: 100%;
+        padding: 18px; /* Target táctil extra grande para acciones finales */
+        font-size: 18px;
+        margin-top: 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.2s;
+    }
+
+    /* 8. Escalamiento de Logo/Header */
+    .header-logo, .logo {
+        max-width: 200px; /* Escala el logo para móvil */
+        margin: 0 auto;
+        padding: 10px 0;
+    }
+
+    .header-section {
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* 9. Ajustes de Pie de página */
+    footer {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+        margin-top: 30px;
+        border-top: 1px solid #eaeaea;
+    }
+
+    footer p {
+        font-size: 13px;
+        color: #777;
+    }
 }
