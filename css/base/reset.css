@@ -18,9 +18,14 @@ hr {
 }
 
 section {
-    padding: 3rem 1rem; /* Crea un espacio uniforme de separación arriba y abajo */
+    padding: 6rem 1rem;
     width: 100%;
     box-sizing: border-box;
+
+    background-image: url('../../assets/images/bg-section.png');
+    background-size: 100% auto;
+    background-position: top center; 
+    background-repeat: no-repeat;
 }
 
 .img_svg {

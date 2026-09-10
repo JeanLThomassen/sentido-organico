@@ -163,26 +163,24 @@
                             <small>TURNO</small>
                         </div>
                     </div>
-                    <fieldset class="form_panel" data-step="1">
-                        <legend class="booking_header">
+                    <div class="form-panel form-panel--active" data-step="1">
+                        <div class="booking-header">
                             <h3>Tus Datos</h3>
                             <hr>
-                        </legend>
-                        <div class="form_group">
-                            <label for="name">Nombre completo</label>
-                            <input type="text" placeholder="Ej: Yael..." required>
-                            <div class="form_input">
-                                <div>
-                                    <label for="email">Correo Electronico</label>
-                                    <input type="email" placeholder="yael@gmail.com" required>
-                                </div>
-                                <div>
-                                    <label for="tel">Telefono</label>
-                                    <input type="number" placeholder="24956856..." required>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="clientName">Nombre completo</label>
+                            <input type="text" id="clientName" placeholder="Ej: Yael..." required>
+                            <div>
+                                <label for="clientEmail">Correo Electronico</label>
+                                <label for="clientPhone">Telefono</label>
+                            </div>
+                            <div class="form-input">
+                                <input type="email" id="clientEmail" placeholder="yael@gmail.com" required>
+                                <input type="number" id="clientPhone" placeholder="24956856..." required>
                             </div>
                         </div>
-                    </fieldset>
+                    </div>
     
                     <fieldset class="form_panel" data-step="2">
                         <legend class="booking_header">
@@ -348,6 +346,15 @@
             <a href="" target="_blank">ESCRIBIR POR WHATSAPP</a>
         </div>
     </div>
+    <div class="modal" id="serviceModal" hidden>
+    <div class="modal__backdrop" id="modalBackdrop"></div>
+    <div class="modal__content">
+        <button class="modal__close" id="modalClose" aria-label="Cerrar">&times;</button>
+        <img src="" alt="" class="modal__image" id="modalImage">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+    </div>
+</div>
 <script type="module" src="js/main.js"></script>
 </body>
 </html>
