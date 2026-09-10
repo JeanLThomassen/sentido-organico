@@ -1,26 +1,27 @@
-/* Este código SOLO se activa en pantallas menores a 768px (celulares y tablets chicas) */
+/* --- ESTILOS PARA CELULARES Y TABLETS (Máx 768px) --- */
 @media screen and (max-width: 768px) {
     
-    /* 1. Base y Espaciado Universal */
-    body {
-        font-size: 15px;
-        overflow-x: hidden; /* Evita que se pueda hacer scroll horizontal */
-    }
-
-    h1 { font-size: 28px; text-align: center; }
-    h2 { font-size: 24px; text-align: center; }
-    h3 { font-size: 20px; text-align: center; }
-
-    /* 2. Header y Navegación */
+    /* 1. HEADER: Solo el nombre y el menú hamburguesa */
     header {
         display: flex;
-        justify-content: space-between; /* Manda el logo a la izquierda y la hamburguesa a la derecha */
+        justify-content: space-between;
         align-items: center;
         padding: 15px 20px;
         position: relative;
-        background-color: #fff; /* Asegura que el fondo cubra bien */
+        background-color: #fff;
     }
 
+    /* Ocultamos el logo como pediste, dejando solo el texto "Sentido Orgánico" */
+    header .img_svg {
+        display: none !important;
+    }
+
+    header div:first-child span {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    /* Mostrar botón hamburguesa */
     .hamburger-btn {
         display: block;
         background: none;
@@ -30,170 +31,102 @@
         cursor: pointer;
     }
 
-    .hamburger-btn {
-        display: block;
-        background: none;
-        border: none;
-        font-size: 28px;
-        color: #7A6B5D;
-        cursor: pointer;
-    }
-
-    /* Ocultamos el menú de navegación por defecto */
+    /* Menú oculto por defecto en celular */
     #menuNav {
         display: none; 
         position: absolute;
-        top: 100%; /* Se despliega justo debajo del header */
+        top: 100%;
         left: 0;
         width: 100%;
-        background-color: #fcfbf9; /* Color de fondo acorde a la estética */
+        background-color: #fcfbf9;
         box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
         padding: 20px 0;
         z-index: 999;
     }
 
-    /* Esta clase se activará con JavaScript al tocar el botón */
     #menuNav.activo {
         display: block;
     }
 
-    header nav {
+    #menuNav nav {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
-        width: 100%;
-    }
-
-    header nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    /* 3. Botones y Hero */
-    .hero {
-        padding: 20px 10px;
-        text-align: center;
-    }
-
-    .hero > div:last-child {
-        display: flex;
-        flex-direction: column;
         gap: 15px;
-        width: 100%;
-        padding: 0 20px;
     }
 
-    .button_classic, .button_classic-diff, .button_header {
-        width: 100%;
-        max-width: 280px; /* Evita que los botones se estiren de más en pantallas anchas */
-        margin: 0 auto; /* Centra los botones */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 14px 20px;
-        border-radius: 8px;
-        box-sizing: border-box;
-    }
-    
-    /* 4. Imágenes y Grilla de Servicios */
-    .service_case {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en celular para que no queden gigantes */
-        gap: 10px;
-        padding: 10px;
-    }
-
-    .service-item img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-    }
-
-    /* 5. Sección Nosotros (Profesional Card) */
-    .about-container {
-        display: flex;
-        flex-direction: column; /* Apila la foto y el texto de Lucrecia */
-        align-items: center;
-        text-align: center;
-    }
-
-    .profesional-card img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
-
-    /* 6. El Mapa de Google (Crucial) */
-    .location-card {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .location-card iframe {
-        width: 100% !important; /* Fuerza al mapa a ocupar el ancho de la pantalla */
-        max-width: 100%;
-        height: 350px !important; /* Reduce la altura en el celu */
-    }
-
-    /* 7. FORMULARIO DE RESERVAS (Adaptación total) */
+    /* 2. FORMULARIO: Adaptación perfecta a la pantalla */
     #booking .container {
-        padding: 0 15px; /* Margen lateral para que el formulario no pegue en los bordes del celular */
+        padding: 0 15px;
         width: 100%;
         box-sizing: border-box;
     }
 
     .form_card {
-        padding: 25px 15px; /* Más espacio interno para que respire */
+        padding: 20px 15px;
         width: 100%;
         box-sizing: border-box;
-        border-radius: 12px;
-        overflow: hidden; /* Evita que cualquier input desborde */
-    }
-
-    .steps {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
+        border-radius: 10px;
+        overflow: hidden;
     }
 
     .form-input {
         display: flex;
-        flex-direction: column; /* Apila Email y Teléfono uno arriba del otro */
+        flex-direction: column;
         gap: 15px;
         width: 100%;
     }
 
-    /* Inputs súper fáciles de tocar en móvil */
-    input[type="text"], input[type="email"], input[type="number"], select {
+    /* Evitar zoom en iOS al tocar los inputs */
+    input[type="text"], 
+    input[type="email"], 
+    input[type="number"], 
+    select {
         width: 100%;
+        padding: 14px;
+        font-size: 16px !important; 
+        box-sizing: border-box;
+    }
+
+    /* 3. BOTONES: Ancho completo y fáciles de tocar */
+    .button_classic, 
+    .button_classic-diff, 
+    .button_header,
+    #prevBtn,
+    #nextBtn {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         padding: 15px;
-        font-size: 16px; /* 16px evita que iOS haga zoom automático */
-        border-radius: 8px;
-        border: 1px solid #ccc;
         box-sizing: border-box;
         margin-bottom: 10px;
     }
 
-    /* Ajuste de los botones Siguiente/Anterior del formulario */
+    /* Contenedor de Siguiente/Anterior: Siguiente arriba, Anterior abajo */
     .form_card > div:last-child {
         display: flex;
-        flex-direction: column-reverse; /* "Siguiente" arriba, "Anterior" abajo */
-        gap: 12px;
-        margin-top: 25px;
+        flex-direction: column-reverse;
+        gap: 5px;
+        margin-top: 20px;
     }
 
-    /* 8. Footer */
-    footer {
+    /* 4. IMÁGENES Y GOOGLE MAPS */
+    .service_case {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en celular */
+        gap: 10px;
+    }
+
+    .profesional-card {
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
-        gap: 30px;
-        padding: 30px 15px;
+    }
+
+    .location-card iframe {
+        width: 100% !important; /* Fuerza al mapa a no desbordar */
+        height: 300px !important; /* Altura ideal para móvil */
     }
 }

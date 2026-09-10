@@ -82,3 +82,17 @@ header.scrolled > div:first-child {
     transform: translateY(-10px); 
     pointer-events: none;
 }
+
+.hamburger-btn {
+    display: none; 
+}
+
+#menuNav {
+    display: block;
+}
+
+#menuNav nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
