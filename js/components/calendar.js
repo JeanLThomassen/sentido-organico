@@ -3,16 +3,13 @@ export function initCalendar(root) {
         'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
         'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
     ];
-
     let currentDate = new Date();
     let selectedDate = null;
     let selectedTime = null;
-
-    const schedule = ["10:00", "11:30", "13:00", "14:30"];
-
+    
     const todayMonth = new Date().getMonth();
     const todayYear = new Date().getFullYear();
-
+    
     const trigger = root.querySelector('#dateTimeSelect');
     const triggerLabel = root.querySelector('#dateTimeSelectLabel');
     const popover = root.querySelector('#calendarPopover');
@@ -31,20 +28,16 @@ export function initCalendar(root) {
         popover.hidden = false;
         showDaysView();
     }
-
     function closePopover() {
         popover.hidden = true;
     }
-
     function togglePopover() {
         popover.hidden ? openPopover() : closePopover();
     }
-
     function showDaysView() {
         daysView.hidden = false;
         timesView.hidden = true;
     }
-
     function showTimesView() {
         daysView.hidden = true;
         timesView.hidden = false;
@@ -63,54 +56,98 @@ export function initCalendar(root) {
             grid.appendChild(document.createElement('div'));
         }
 
+        // Fecha actual sin horas para comparar días pasados
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
         for (let day = 1; day <= totalDays; day++) {
             const dayBtn = document.createElement('button');
             dayBtn.type = 'button';
             dayBtn.textContent = day;
             dayBtn.classList.add('btn_day');
 
-            dayBtn.addEventListener('click', () => {
-                selectedDate = new Date(year, month, day);
-                renderTimes();
-                showTimesView();
-            });
+            const cellDate = new Date(year, month, day);
+            cellDate.setHours(0, 0, 0, 0);
+
+            // Si el día es anterior a hoy, lo deshabilitamos y estilizamos distinto
+            if (cellDate < today) {
+                dayBtn.disabled = true;
+                dayBtn.style.opacity = '0.3';
+                dayBtn.style.cursor = 'not-allowed';
+            } else {
+                dayBtn.addEventListener('click', () => {
+                    selectedDate = new Date(year, month, day);
+                    renderTimes();
+                    showTimesView();
+                });
+            }
 
             grid.appendChild(dayBtn);
         }
     }
 
-    function renderTimes() {
+    async function renderTimes() {
         const dayNumber = selectedDate.getDate();
         const monthName = monthNames[selectedDate.getMonth()].toLowerCase();
         selectedDayLabel.textContent = `${dayNumber} de ${monthName}`;
+        timesContainer.innerHTML = '<small style="padding: 10px;">Cargando horarios...</small>';
 
-        timesContainer.innerHTML = '';
+        const isoDate = selectedDate.toISOString().split('T')[0];
 
-        schedule.forEach(time => {
-            const timeBtn = document.createElement('button');
-            timeBtn.type = 'button';
-            timeBtn.textContent = time;
-            timeBtn.classList.add('btn_time');
+        try {
+            const response = await fetch(`http://localhost:3000/api/disponibilidad?date=${isoDate}`);
+            const data = await response.json();
 
-            timeBtn.addEventListener('click', () => {
-                selectedTime = time;
-                confirmSelection();
+            timesContainer.innerHTML = '';
+
+            if (!data.success || data.horarios.length === 0) {
+                timesContainer.innerHTML = '<small style="padding: 10px; color: red;">No hay horarios configurados.</small>';
+                return;
+            }
+
+            data.horarios.forEach(slot => {
+                const timeBtn = document.createElement('button');
+                timeBtn.type = 'button';
+                timeBtn.textContent = slot.time; // Asegura que muestre la hora (ej: "10:00")
+                timeBtn.classList.add('btn_time');
+
+                if (!slot.available) {
+                    // Estilo para horarios ocupados (rojos, bloqueados y texto visible)
+                    timeBtn.disabled = true;
+                    timeBtn.style.backgroundColor = '#ffe6e6';
+                    timeBtn.style.color = '#a94442'; // Color de texto oscuro para que se lea la hora
+                    timeBtn.style.borderColor = '#d9534f';
+                    timeBtn.style.textDecoration = 'line-through'; // Opcional: tacha la hora ocupada
+                    timeBtn.style.cursor = 'not-allowed';
+                    timeBtn.title = 'Horario ocupado';
+                } else {
+                    // Estilo para horarios libres
+                    timeBtn.style.backgroundColor = '';
+                    timeBtn.style.color = '';
+                    timeBtn.style.borderColor = '';
+                    timeBtn.addEventListener('click', () => {
+                        selectedTime = slot.time;
+                        confirmSelection();
+                    });
+                }
+
+                timesContainer.appendChild(timeBtn);
             });
 
-            timesContainer.appendChild(timeBtn);
-        });
+        } catch (error) {
+            console.error('Error al obtener la disponibilidad:', error);
+            timesContainer.innerHTML = '<small style="padding: 10px; color: red;">Error al cargar horarios.</small>';
+        }
     }
 
     function confirmSelection() {
         const dayNumber = selectedDate.getDate();
         const monthName = monthNames[selectedDate.getMonth()].toLowerCase();
         triggerLabel.textContent = `${dayNumber} de ${monthName}, ${selectedTime}`;
-
         if (hiddenInput) {
             const isoDate = selectedDate.toISOString().split('T')[0];
             hiddenInput.value = `${isoDate} ${selectedTime}`;
         }
-
         closePopover();
     }
 

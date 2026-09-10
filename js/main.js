@@ -31,7 +31,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-const reveals = document.querySelectorAll('section, .service_case img, .about-text, contact-inline');
+const reveals = document.querySelectorAll('section, .service_case img, .about-text, .contact-inline, #serviceModal, #contactWidget');
 
 // Les agregamos la clase inicial a todos
 reveals.forEach(el => el.classList.add('reveal'));

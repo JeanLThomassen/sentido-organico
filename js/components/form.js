@@ -2,8 +2,10 @@ export function initBookingForm(root, calendarModule) {
     const step = root.querySelectorAll('.step');
     const nextBtnForm = root.querySelector('#nextBtn');
     const prevBtnForm = root.querySelector('#prevBtn');
-    const form_panel = root.querySelectorAll('.form-panel');
-
+    
+    // Usamos el selector correcto con guion bajo
+    const form_panel = root.querySelectorAll('.form_panel'); 
+    
     const nameInput = root.querySelector('#clientName');
     const emailInput = root.querySelector('#clientEmail');
     const phoneInput = root.querySelector('#clientPhone');
@@ -17,16 +19,21 @@ export function initBookingForm(root, calendarModule) {
     function update(index) {
         const stepPanelOn = stepPanel[index];
         const stepOn = steps[index];
-
+        
         stepPanel.forEach((_, i) => {
-            stepPanel[i].classList.remove('form-panel--active');
-            steps[i].classList.remove('step--selected');
+            stepPanel[i].classList.remove('form_panel--active');
+            steps[i].classList.remove('step--active');
         });
+                 
+        if (stepPanelOn) stepPanelOn.classList.add('form_panel--active');
+        if (stepOn) stepOn.classList.add('step--active');
 
-        stepPanelOn.classList.add('form-panel--active');
-        stepOn.classList.add('step--selected');
-
-        nextBtnForm.textContent = index === maxIndex ? 'Confirmar' : 'Siguiente';
+        // Cambia el texto del botón según el paso en el que estés
+        if (index === maxIndex) {
+            nextBtnForm.textContent = "Confirmar Cita";
+        } else {
+            nextBtnForm.textContent = "Siguiente";
+        }
     }
 
     function goToStep(index) {
@@ -37,31 +44,22 @@ export function initBookingForm(root, calendarModule) {
     }
 
     function validateStep(index) {
-        if (index === 0 && (!nameInput.value.trim() || !emailInput.value.trim() || !phoneInput.value.trim())) {
-            alert('Completá nombre, email y teléfono para continuar.');
-            return false;
+        if (index === 0) {
+            if (!nameInput.value.trim() || !emailInput.value.trim() || !phoneInput.value.trim()) {
+                alert('Completá nombre, email y teléfono para continuar.');
+                return false;
+            }
         }
-        if (index === 1 && !serviceSelect.value) {
-            alert('Elegí un servicio para continuar.');
-            return false;
+        if (index === 1) {
+            if (!serviceSelect.value) {
+                alert('Elegí un servicio para continuar.');
+                return false;
+            }
         }
         return true;
     }
 
-    function collectFormData() {
-        const { selectedDate, selectedTime } = calendarModule.getSelection();
-
-        return {
-            name: nameInput.value.trim(),
-            email: emailInput.value.trim(),
-            phone: phoneInput.value.trim(),
-            service: serviceSelect.value,
-            date: selectedDate ? selectedDate.toISOString().split('T')[0] : null,
-            time: selectedTime
-        };
-    }
-
-    const handleNextClick = () => {
+    const handleNextClick = async () => {
         if (!validateStep(currentStep)) return;
 
         if (currentStep === maxIndex) {
@@ -70,21 +68,43 @@ export function initBookingForm(root, calendarModule) {
                 alert('Elegí un día y horario para confirmar tu turno.');
                 return;
             }
+            
+            const formData = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                phone: phoneInput.value.trim(),
+                service: serviceSelect.value,
+                date: selectedDate.toISOString().split('T')[0],
+                time: selectedTime
+            };
 
-            const formData = collectFormData();
-            console.log('Turno confirmado ✅', formData);
-            // TODO: acá va el fetch() al backend cuando lo arme
+            try {
+                const response = await fetch('http://localhost:3000/api/agendar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                if(result.success) {
+                    alert('¡Turno confirmado con éxito en Google Calendar!');
+                } else {
+                    alert('Error: ' + (result.error || 'No se pudo agendar.'));
+                }
+            } catch (error) {
+                console.error('Error de conexión con Node.js:', error);
+                alert('No se pudo conectar con el servidor local (puerto 3000). Asegurate de tener el server.js corriendo.');
+            }
         } else {
             goToStep(currentStep + 1);
         }
     };
 
-    const prev = () => goToStep(currentStep - 1);
+    const prev = () => goToStep(currentStep - 1); 
 
     nextBtnForm.addEventListener('click', handleNextClick);
-    prevBtnForm.addEventListener('click', prev);
+    prevBtnForm.addEventListener('click', prev); 
 
     update(currentStep);
-
     return { handleNextClick, prev, goToStep };
 }
