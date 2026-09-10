@@ -1,0 +1,46 @@
+/* Este código SOLO se activa en pantallas menores a 768px (celulares y tablets chicas) */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Evitar que el contenido se salga de la pantalla */
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 2. Convertir estructuras de lado a lado en estructuras de arriba a abajo */
+    /* (Si usaste flexbox para dividir la pantalla, esto apila las columnas) */
+    .container, .row, form {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* 3. Hacer que las imágenes no se deformen y entren en la pantalla */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* 4. Ajustar el contenedor de los horarios para que los botones entren bien */
+    #times-container, .horarios-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas de botones en el celu */
+        gap: 10px;
+        width: 100%;
+    }
+
+    /* 5. Agrandar los botones de los turnos para que sea fácil tocarlos con el dedo */
+    button, input, select {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px; /* Evita que el iPhone haga zoom automático al escribir */
+        margin-bottom: 10px;
+    }
+
+    /* 6. Reducir un poco los títulos para que no ocupen media pantalla */
+    h1 { font-size: 24px; }
+    h2 { font-size: 20px; }
+}
