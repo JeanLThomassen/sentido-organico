@@ -10,7 +10,7 @@ main {
 .hero {
     flex-direction: column;
 
-    background-image: url('../../assets/images/bg-hero.png');
+    background-image: url('../../assets/images/bg-hero.webp');
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
@@ -228,7 +228,7 @@ main {
 
     background: 
     linear-gradient(to right, rgba(196, 213, 182, 1) 30%, rgba(247, 249, 250, 0) 100%), 
-    url('../../assets/images/logo.png') center / auto 100% no-repeat;
+    url('../../assets/images/logo.webp') center / auto 100% no-repeat;
 
     display: flex;
     flex-direction: row;
