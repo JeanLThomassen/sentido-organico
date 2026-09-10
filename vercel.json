@@ -8,7 +8,10 @@
         "includeFiles": [
           "index.html",
           "css/**",
-          "js/**"
+          "js/**",
+          "img/**",
+          "images/**",
+          "assets/**"
         ]
       }
     }
