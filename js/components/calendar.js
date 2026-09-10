@@ -100,7 +100,7 @@ export function initCalendar(root) {
 
             timesContainer.innerHTML = '';
 
-            if (!data.success || data.horarios.length === 0) {
+            if (!data.success || !data.horarios || data.horarios.length === 0) {
                 timesContainer.innerHTML = '<small style="padding: 10px; color: red;">No hay horarios configurados.</small>';
                 return;
             }
@@ -108,7 +108,7 @@ export function initCalendar(root) {
             data.horarios.forEach(slot => {
                 const timeBtn = document.createElement('button');
                 timeBtn.type = 'button';
-                timeBtn.textContent = slot.time; // Asegura que muestre la hora (ej: "10:00")
+                timeBtn.textContent = slot.time;
                 timeBtn.classList.add('btn_time');
 
                 if (!slot.available) {

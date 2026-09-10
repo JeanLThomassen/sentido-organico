@@ -74,10 +74,24 @@ app.get('/api/disponibilidad', async (req, res) => {
     const { date } = req.query; // Formato YYYY-MM-DD
     if (!date) return res.status(400).json({ error: 'Falta la fecha' });
 
-    const horariosPosibles = ["10:00", "11:30", "13:00", "14:30", "16:00", "17:30"];
-    
     try {
-        // Consultamos desde el inicio hasta el fin del día en UTC para que Google devuelva todo sin errores de huso horario
+        // Determinamos qué día de la semana es (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
+        const fechaLocal = new Date(`${date}T00:00:00-03:00`);
+        const diaSemana = fechaLocal.getDay();
+
+        let horariosPosibles = [];
+
+        if (diaSemana === 0) {
+            // Domingos: NO trabaja
+            return res.json({ success: true, horarios: [] });
+        } else if (diaSemana >= 1 && diaSemana <= 5) {
+            // Lunes a Viernes: 8hs a 12hs
+            horariosPosibles = ["08:00", "09:00", "10:00", "11:00"];
+        } else if (diaSemana === 6) {
+            // Sábados: 9hs a 17hs
+            horariosPosibles = ["09:00", "10:30", "12:00", "13:30", "15:00", "16:00"];
+        }
+
         const timeMin = new Date(`${date}T00:00:00.000-03:00`).toISOString();
         const timeMax = new Date(`${date}T23:59:59.999-03:00`).toISOString();
 
@@ -91,28 +105,26 @@ app.get('/api/disponibilidad', async (req, res) => {
 
         const busySlots = freeBusyCheck.data.calendars[CALENDAR_ID].busy || [];
 
-        const horariosConEstado = horariosPosibles.map(hora => {
-            // Creamos los objetos Date exactos para el slot del turno
+        // Evaluamos cada horario posible contra los bloqueos del calendario
+        const horariosFinales = horariosPosibles.map(hora => {
             const inicioSlot = new Date(`${date}T${hora}:00-03:00`).getTime();
-            const finSlot = inicioSlot + (60 * 60 * 1000); // 1 hora de duración
+            const finSlot = inicioSlot + (60 * 60 * 1000); // 1 hora de duración por turno
 
             const estaOcupado = busySlots.some(slot => {
                 const inicioBusy = new Date(slot.start).getTime();
                 const finBusy = new Date(slot.end).getTime();
 
-                // Si es un evento de todo el día
                 if (slot.start.length === 10) {
                     return slot.start === date;
                 }
 
-                // Cruce de horarios real (si el slot del turno se superpone con el evento ocupado)
                 return (inicioSlot < finBusy && finSlot > inicioBusy);
             });
 
             return { time: hora, available: !estaOcupado };
         });
 
-        res.json({ success: true, horarios: horariosConEstado });
+        res.json({ success: true, horarios: horariosFinales });
     } catch (error) {
         console.error('Error al consultar disponibilidad:', error);
         res.status(500).json({ error: 'Error al obtener horarios' });
@@ -126,5 +138,5 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
-export default app;
+module.exports = app;
 
