@@ -1,155 +1,140 @@
-/* Este código SOLO se activa en pantallas menores a 768px (celulares y tablets) */
+/* Este código SOLO se activa en pantallas menores a 768px (celulares y tablets chicas) */
 @media screen and (max-width: 768px) {
     
-    /* 1. Base y Espaciado Universal para móvil */
+    /* 1. Base y Espaciado Universal */
     body {
-        padding: 15px; /* Padding general constante para que nada toque los bordes del celu */
-        font-size: 15px; /* Fuente base ligeramente más pequeña para mejor legibilidad */
-        line-height: 1.5; /* Mayor interlineado para descanso visual */
+        font-size: 15px;
+        overflow-x: hidden; /* Evita que se pueda hacer scroll horizontal */
     }
 
-    /* 2. Tipografía simplificada y centrada para móvil */
-    h1 { font-size: 26px; text-align: center; margin-bottom: 20px; margin-top: 10px; }
-    h2 { font-size: 22px; text-align: center; margin-top: 25px; margin-bottom: 15px; }
-    h3 { font-size: 18px; margin-top: 20px; margin-bottom: 10px; }
-    p { margin-bottom: 15px; }
+    h1 { font-size: 28px; text-align: center; }
+    h2 { font-size: 24px; text-align: center; }
+    h3 { font-size: 20px; text-align: center; }
 
-    /* 3. Escalamiento universal de imágenes (centradas por defecto) */
-    img {
+    /* 2. Header y Navegación */
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    header nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* 3. Botones y Hero */
+    .hero {
+        padding: 20px 10px;
+        text-align: center;
+    }
+
+    .hero > div:last-child {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .button_classic, .button_classic-diff, .button_header {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* 4. Imágenes y Grilla de Servicios */
+    .service_case {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en celular para que no queden gigantes */
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .service-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* 5. Sección Nosotros (Profesional Card) */
+    .about-container {
+        display: flex;
+        flex-direction: column; /* Apila la foto y el texto de Lucrecia */
+        align-items: center;
+        text-align: center;
+    }
+
+    .profesional-card img {
         max-width: 100%;
         height: auto;
-        display: block;
-        margin: 0 auto; /* Centra las imágenes si son más chicas que el ancho de pantalla */
+        border-radius: 10px;
+        margin-bottom: 20px;
     }
 
-    /* 4. Contenedores generales (apilar y centrar contenido) */
-    /* (Clases comunes que podrías tener: .container, .row, .hair-salon-section) */
-    .container, .main-content, .reserve-section, form {
-        width: 100%;
+    /* 6. El Mapa de Google (Crucial) */
+    .location-card {
         display: flex;
         flex-direction: column;
-        align-items: center; /* Centra todo el contenido en el móvil */
-        padding: 10px 0; /* Espaciado vertical */
+        width: 100%;
     }
 
-    /* 5. Estilo mejorado para Formularios e Inputs en móvil (fáciles de tocar) */
-    .form-container form, form {
+    .location-card iframe {
+        width: 100% !important; /* Fuerza al mapa a ocupar el ancho de la pantalla */
+        max-width: 100%;
+        height: 350px !important; /* Reduce la altura en el celu */
+    }
+
+    /* 7. FORMULARIO DE RESERVAS (Adaptación total) */
+    .form_card {
+        padding: 15px;
         width: 100%;
+        box-sizing: border-box;
+    }
+
+    .steps {
         display: flex;
-        flex-direction: column;
-        padding: 0 10px; /* Padding interno horizontal ligero */
+        justify-content: space-between;
+        margin-bottom: 20px;
     }
 
-    /* Estilo para labels de formulario */
-    .form-label, label {
-        font-size: 14px; /* Texto de label ligeramente más chico */
-        margin-bottom: 5px;
-        display: block;
-        align-self: flex-start; /* Alinea los labels a la izquierda */
-    }
-
-    /* Aplica estilos a todos los tipos de input, select y textarea */
-    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    .form-input {
+        display: flex;
+        flex-direction: column; /* Apila Email y Teléfono uno arriba del otro */
+        gap: 15px;
         width: 100%;
-        padding: 14px; /* Target de toque extra grande */
-        font-size: 16px !important; /* Fuerza a iOS a no hacer zoom automático al escribir */
-        margin-bottom: 15px;
-        border-radius: 6px;
+    }
+
+    /* Inputs súper fáciles de tocar en móvil */
+    input[type="text"], input[type="email"], input[type="number"], select {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px; /* 16px evita que iOS haga zoom automático */
+        border-radius: 8px;
         border: 1px solid #ccc;
-        background-color: #f9f9f9;
-        box-sizing: border-box; /* Crucial para que el padding no desborde el ancho */
+        box-sizing: border-box;
+        margin-bottom: 10px;
     }
 
-    /* 6. Mejoras en la cuadrícula de Horarios (dos columnas de botones grandes) */
-    #times-container, .time-slots-grid {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas centradas, ancho completo */
-        gap: 15px; /* Buen espaciado entre botones */
-        justify-items: center;
-        margin-top: 15px;
-        padding: 0 10px;
-    }
-
-    /* Botones de horarios individuales */
-    #times-container button, .time-slots-grid button {
-        width: 100%; /* Llenar la celda de la cuadrícula */
-        max-width: 160px; /* Pero no crecer demasiado */
-        height: 55px; /* Altura táctil vertical cómoda */
-        font-size: 16px;
-        padding: 10px;
-        margin: 0;
-        border-radius: 8px;
-        text-align: center;
+    /* Ajuste de los botones Siguiente/Anterior del formulario */
+    .form_card > div:last-child {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        cursor: pointer;
-        border: none;
-        transition: background-color 0.2s;
-    }
-
-    /* Definir estados para los botones de horarios (opcional, ajustá a tu JS) */
-    #times-container button.available, .time-slots-grid button.available {
-        background-color: #e2f9e1; /* Verde clarito, listo */
-        color: #333;
-        border: 1px solid #b7e9b6;
-    }
-
-    #times-container button.selected, .time-slots-grid button.selected {
-        background-color: #2e8b57; /* Sea green, seleccionado */
-        color: white;
-        border: none;
-        font-weight: bold;
-    }
-
-    #times-container button:disabled, .time-slots-grid button:disabled {
-        background-color: #eee;
-        color: #999;
-        border: none;
-        box-shadow: none;
-        cursor: not-serif;
-    }
-
-    /* 7. Estilo de Botón Principal para móvil (ancho completo y grande) */
-    .button-primary, button[type="submit"] {
-        width: 100%;
-        padding: 18px; /* Target táctil extra grande para acciones finales */
-        font-size: 18px;
+        flex-direction: column-reverse; /* Pone "Siguiente" arriba de "Anterior" en el celu */
+        gap: 10px;
         margin-top: 20px;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: background-color 0.2s;
     }
 
-    /* 8. Escalamiento de Logo/Header */
-    .header-logo, .logo {
-        max-width: 200px; /* Escala el logo para móvil */
-        margin: 0 auto;
-        padding: 10px 0;
-    }
-
-    .header-section {
-        padding: 20px;
-        text-align: center;
-    }
-
-    /* 9. Ajustes de Pie de página */
+    /* 8. Footer */
     footer {
-        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-        padding: 20px;
-        margin-top: 30px;
-        border-top: 1px solid #eaeaea;
-    }
-
-    footer p {
-        font-size: 13px;
-        color: #777;
+        gap: 30px;
+        padding: 30px 15px;
     }
 }
