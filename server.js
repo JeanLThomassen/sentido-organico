@@ -8,13 +8,21 @@ app.use(cors());
 app.use(express.json());
 
 // Autenticación automática usando tu archivo credentials.json
-const auth = new google.auth.GoogleAuth({
-    keyFile: './credentials.json',
+let authConfig = {
     scopes: [
         'https://www.googleapis.com/auth/calendar.events',
         'https://www.googleapis.com/auth/calendar.readonly'
-    ],
-});
+    ]
+};
+
+// Si existe la variable en Vercel, la parsea. Si no, usa el archivo local.
+if (process.env.GOOGLE_CREDENTIALS) {
+    authConfig.credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+} else {
+    authConfig.keyFile = './credentials.json';
+}
+
+const auth = new google.auth.GoogleAuth(authConfig);
 
 const calendar = google.calendar({ version: 'v3', auth });
 const CALENDAR_ID = process.env.CALENDAR_ID;
