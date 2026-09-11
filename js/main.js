@@ -3,6 +3,9 @@ import { initBookingForm } from './components/form.js';
 import { initCalendar } from './components/calendar.js';
 import { initServiceModal } from './components/modal.js';
 import { initContactWidget } from './components/contact-widget.js';
+import { initMobileMenu } from './components/navbar.js';
+
+initMobileMenu(document);
 
 const sliderEl = document.getElementById('slider');
 if (sliderEl) initSlider(sliderEl);
@@ -46,24 +49,3 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
 }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
 
 reveals.forEach(el => revealObserver.observe(el));
-
-//Boton Menu Hamburguesa
-
-document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('menuToggle');
-    const menuNav = document.getElementById('menuNav');
-
-    if(menuToggle && menuNav) {
-        menuToggle.addEventListener('click', () => {
-            menuNav.classList.toggle('activo');
-        });
-
-        // Cierra el menú al tocar un enlace
-        const linksMenu = menuNav.querySelectorAll('a');
-        linksMenu.forEach(link => {
-            link.addEventListener('click', () => {
-                menuNav.classList.remove('activo');
-            });
-        });
-    }
-});

@@ -83,17 +83,21 @@ header.scrolled > div:first-child {
     pointer-events: none;
 }
 
-/* --- AJUSTES DE HEADER PARA ESCRITORIO (PC) --- */
 .hamburger-btn {
-    display: none; /* Oculta la hamburguesa en PC */
+    display: none;
+    background: none;
+    border: none;
+    font-size: var(--font-size-xl);
+    color: var(--color-bg);
+    cursor: pointer;
 }
 
-#menuNav {
-    display: block; /* Asegura que el menú sea visible en PC */
-}
-
-#menuNav nav {
+.nav-menu {
     display: flex;
-    gap: 20px;
+}
+
+.nav-menu__list {
+    display: flex;
+    gap: 1.5rem;
     align-items: center;
 }

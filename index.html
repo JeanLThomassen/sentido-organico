@@ -10,22 +10,20 @@
 </head>
 <body>
     <header>
-        <div>
+        <div class="header__brand">
             <img class="img_svg" src="assets/icons/logo.svg" alt="Logo Sentido Organico">
             <span>Sentido Orgánico</span>
         </div>
 
-        <!-- Botón Hamburguesa para Móvil -->
-        <button id="menuToggle" class="hamburger-btn">&#9776;</button>
+        <button id="menuToggle" class="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">&#9776;</button>
 
-        <!-- Menú de Navegación -->
-        <div id="menuNav">
-            <nav>
-                <a href="#home">Inicio</a>
-                <a href="#services">Servicios</a>
-                <a href="#about">Nosotros</a>
-                <a href="#location">¿Donde Estamos?</a>
-                <a class="button_header" href="#booking">Reservar Turno</a>
+        <div id="menuNav" class="nav-menu">
+            <nav class="nav-menu__list">
+                <a href="#home" class="nav-menu__link">Inicio</a>
+                <a href="#services" class="nav-menu__link">Servicios</a>
+                <a href="#about" class="nav-menu__link">Nosotros</a>
+                <a href="#location" class="nav-menu__link">¿Donde Estamos?</a>
+                <a class="button_header nav-menu__link nav-menu__link--cta" href="#booking">Reservar Turno</a>
             </nav>
         </div>
     </header>
@@ -132,11 +130,10 @@
             <br>
             <div class="location-card">
             <div class="location-content">
-                
                 <div class="location-header">
-                    <h4>Nuestro estudio<br>se encuentra en:</h4>
-                    <p>Güemes Norte 1774, Tandil, Argentina📌</p>
-                    <a href="https://maps.app.goo.gl/qnEixsWtabCcGZma6" target="_blank" class="button-classic button-diff">Ver Ubicación</a>
+                    <h3>Nuestro estudio<br>se encuentra en:</h3>
+                    <p>Güemes Norte 1774, Tandil, Argentina</p>
+                    <a href="https://maps.app.goo.gl/qnEixsWtabCcGZma6" target="_blank" class="button_classic-diff">Ver Ubicación</a>
                 </div>
             </div>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.761249930494!2d-59.12221302340047!3d-37.300791904896734!
