@@ -95,7 +95,7 @@ export function initCalendar(root) {
         const isoDate = selectedDate.toISOString().split('T')[0];
 
         try {
-            const response = await fetch(`/api/disponibilidad?date=${dateString}`);
+            const response = await fetch(`/api/disponibilidad?date=${isoDate}`);
             const data = await response.json();
 
             timesContainer.innerHTML = '';
