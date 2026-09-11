@@ -53,18 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     const menuNav = document.getElementById('menuNav');
 
-    // Al hacer clic en la hamburguesa, agregamos o quitamos la clase 'activo'
     if(menuToggle && menuNav) {
         menuToggle.addEventListener('click', () => {
             menuNav.classList.toggle('activo');
         });
-    }
 
-    // Para que el menú se cierre solo cuando eligen una opción (Inicio, Servicios, etc.)
-    const linksMenu = menuNav.querySelectorAll('a');
-    linksMenu.forEach(link => {
-        link.addEventListener('click', () => {
-            menuNav.classList.remove('activo');
+        // Cierra el menú al tocar un enlace
+        const linksMenu = menuNav.querySelectorAll('a');
+        linksMenu.forEach(link => {
+            link.addEventListener('click', () => {
+                menuNav.classList.remove('activo');
+            });
         });
-    });
+    }
 });

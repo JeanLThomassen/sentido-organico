@@ -83,12 +83,13 @@ header.scrolled > div:first-child {
     pointer-events: none;
 }
 
+/* --- AJUSTES DE HEADER PARA ESCRITORIO (PC) --- */
 .hamburger-btn {
-    display: none; 
+    display: none; /* Oculta la hamburguesa en PC */
 }
 
 #menuNav {
-    display: block;
+    display: block; /* Asegura que el menú sea visible en PC */
 }
 
 #menuNav nav {
