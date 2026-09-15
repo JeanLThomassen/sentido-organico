@@ -69,7 +69,6 @@ export function initCalendar(root) {
             const cellDate = new Date(year, month, day);
             cellDate.setHours(0, 0, 0, 0);
 
-            // Si el día es anterior a hoy, lo deshabilitamos y estilizamos distinto
             if (cellDate < today) {
                 dayBtn.disabled = true;
                 dayBtn.style.opacity = '0.3';
@@ -112,16 +111,14 @@ export function initCalendar(root) {
                 timeBtn.classList.add('btn_time');
 
                 if (!slot.available) {
-                    // Estilo para horarios ocupados (rojos, bloqueados y texto visible)
                     timeBtn.disabled = true;
                     timeBtn.style.backgroundColor = '#ffe6e6';
-                    timeBtn.style.color = '#a94442'; // Color de texto oscuro para que se lea la hora
+                    timeBtn.style.color = '#a94442'; 
                     timeBtn.style.borderColor = '#d9534f';
-                    timeBtn.style.textDecoration = 'line-through'; // Opcional: tacha la hora ocupada
+                    timeBtn.style.textDecoration = 'line-through';
                     timeBtn.style.cursor = 'not-allowed';
                     timeBtn.title = 'Horario ocupado';
                 } else {
-                    // Estilo para horarios libres
                     timeBtn.style.backgroundColor = '';
                     timeBtn.style.color = '';
                     timeBtn.style.borderColor = '';
