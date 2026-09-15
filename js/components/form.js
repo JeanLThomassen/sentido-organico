@@ -3,7 +3,11 @@ export function initBookingForm(root, calendarModule) {
     const nextBtnForm = root.querySelector('#nextBtn');
     const prevBtnForm = root.querySelector('#prevBtn');
     
-    // Usamos el selector correcto con guion bajo
+    const form = document.querySelector('form');
+    const successCard = document.querySelector('#successCard');
+    const successMessage = document.querySelector('#successMessage');
+    const acceptPolicies = root.querySelector('#acceptPolicies');
+
     const form_panel = root.querySelectorAll('.form_panel'); 
     
     const nameInput = root.querySelector('#clientName');
@@ -28,7 +32,6 @@ export function initBookingForm(root, calendarModule) {
         if (stepPanelOn) stepPanelOn.classList.add('form_panel--active');
         if (stepOn) stepOn.classList.add('step--active');
 
-        // Cambia el texto del botón según el paso en el que estés
         if (index === maxIndex) {
             nextBtnForm.textContent = "Confirmar Cita";
         } else {
@@ -64,8 +67,14 @@ export function initBookingForm(root, calendarModule) {
 
         if (currentStep === maxIndex) {
             const { selectedDate, selectedTime } = calendarModule.getSelection();
+            
             if (!selectedDate || !selectedTime) {
                 alert('Elegí un día y horario para confirmar tu turno.');
+                return;
+            }
+
+            if (!acceptPolicies.checked) {
+                alert('Debes aceptar las Políticas de Reserva para continuar.');
                 return;
             }
             
@@ -87,13 +96,17 @@ export function initBookingForm(root, calendarModule) {
 
                 const result = await response.json();
                 if(result.success) {
-                    alert('¡Turno confirmado con éxito en Google Calendar!');
+                    form.style.display = 'none'; 
+                    successCard.hidden = false;
+                    
+                    const dateTimeText = document.querySelector('#dateTimeSelectLabel').textContent; 
+                    successMessage.innerHTML = `Te esperamos el<br><strong>${dateTimeText}</strong>.`;
                 } else {
                     alert('Error: ' + (result.error || 'No se pudo agendar.'));
                 }
             } catch (error) {
                 console.error('Error de conexión con Node.js:', error);
-                alert('No se pudo conectar con el servidor local (puerto 3000). Asegurate de tener el server.js corriendo.');
+                alert('No se pudo conectar con el servidor. Intentá nuevamente.');
             }
         } else {
             goToStep(currentStep + 1);

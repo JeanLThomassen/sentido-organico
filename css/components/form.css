@@ -1,7 +1,6 @@
 form {
     display: flex;
     justify-content: center;
-    
     height: 100%;
     padding: 2rem;
 }
@@ -10,7 +9,6 @@ input{
     width: 100%;
     height: 50px;
     margin-bottom: 1rem;
-
     border: none;
     border-bottom: 2px solid var(--color-border);
     outline: none;
@@ -26,11 +24,9 @@ label{
 select {
     display: flex;
     flex-direction: column;
-
     width: 100%;
     color: var(--color-text);
     font-family: var(--font-body);
-
     padding: 8px;
     border-radius: 5px;
     border: 1px solid var(--color-border);
@@ -49,14 +45,10 @@ select {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
     position: relative;
-
     width: 700px;
     height: 515px;
-    
     padding: 10px;
-    
     border-radius: 10px;
     border: 2px solid var(--color-border);
     background-color: var(--color-bg-alt);
@@ -73,7 +65,6 @@ select {
     transform: translateX(12px);
     transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
     position: absolute;
-
     width: 90%;
     height: 100%;
 }
@@ -95,7 +86,6 @@ select {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
     gap: 1rem;
 }
 
@@ -106,7 +96,6 @@ select {
 .steps{
     display: flex;
     flex-direction: row;
-    
     gap: 1rem;
     padding: 1rem;
 }
@@ -114,10 +103,8 @@ select {
 .step{
     display: flex;
     align-items: center;
-
     width: 200px;
     height: 40px;
-    
     border-radius: 5px;
     border: 1px solid var(--color-border);
     background-color: var(--color-bg-alt);
@@ -130,4 +117,75 @@ select {
 .step--active{
     color: var(--color-bg);
     background-color: var(--color-text-muted);
+}
+
+/* --- CHECKBOX --- */
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+.form-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--color-accent);
+}
+
+.form-checkbox a {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+/* --- TARJETA DE ÉXITO --- */
+.success-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-icon {
+    width: 70px;
+    height: 70px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+.success-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: white;
+}
+
+.success-card h3 {
+    margin-bottom: 10px;
+    color: var(--color-text);
+}
+
+.success-card p {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.success-card[hidden] {
+    display: none !important;
 }

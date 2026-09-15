@@ -1,0 +1,112 @@
+.page_politicas header {
+    position: relative !important; 
+    border-bottom: 1px solid var(--color-accent) !important;
+}
+
+.page_politicas header span,
+.page_politicas #menuNav nav a {
+    color: var(--color-text) !important;
+    text-shadow: none !important;
+}
+
+.page_politicas .hamburger-btn {
+    color: var(--color-text) !important;
+}
+
+body.page_politicas {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* 1: Header (auto), 2: Contenido (ocupa el resto), 3: Footer (auto) */
+    min-height: 100vh;
+    margin: 0;
+}
+
+.page_politicas header,
+.page_politicas footer {
+    margin: 0;
+}
+
+.container_politicas {
+    margin-top: 2rem;
+}
+
+.container_politicas p{
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.container_card_politicas {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.card_politicas {
+    border-bottom: 1px solid var(--color-text);
+    padding: 1rem;
+}
+
+.politica-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.5rem 0 2rem 0;
+    cursor: pointer;
+    text-align: left;
+    color: var(--color-text);
+}
+
+.icono-desplegable {
+    font-size: 24px;
+    margin-right: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.politica-contenido {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-in-out;
+}
+
+.politica-texto {
+    overflow: hidden;
+    padding-bottom: 0;
+    transition: padding 0.3s ease-in-out;
+}
+
+.politica-texto small {
+    padding: 1rem;
+}
+
+.politica-texto ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.politica-texto li {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+.politica-texto li a {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.card_politicas.activa .politica-contenido {
+    grid-template-rows: 1fr;
+}
+
+.card_politicas.activa .politica-texto {
+    padding-bottom: 20px;
+}
+
+.card_politicas.activa .icono-desplegable {
+    transform: rotate(45deg);
+    color: var(--color-accent);
+}

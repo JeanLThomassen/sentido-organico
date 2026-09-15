@@ -1,4 +1,3 @@
-import { initSlider } from './components/slider.js';
 import { initBookingForm } from './components/form.js';
 import { initCalendar } from './components/calendar.js';
 import { initServiceModal } from './components/modal.js';
@@ -6,9 +5,6 @@ import { initContactWidget } from './components/contact-widget.js';
 import { initMobileMenu } from './components/navbar.js';
 
 initMobileMenu(document);
-
-const sliderEl = document.getElementById('slider');
-if (sliderEl) initSlider(sliderEl);
 
 const calendarEl = document.getElementById('calendar');
 let calendarModule = null;
@@ -36,7 +32,6 @@ window.addEventListener('scroll', () => {
 
 const reveals = document.querySelectorAll('section, .service_case img, .about-text, .contact-inline, #serviceModal, #contactWidget');
 
-// Les agregamos la clase inicial a todos
 reveals.forEach(el => el.classList.add('reveal'));
 
 const revealObserver = new IntersectionObserver((entries, observer) => {

@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
     <link rel="icon" type="image/svg+xml" href="/assets/icons/logo.svg">
     <link rel="icon" href="data:,">
-    <title>Sentido Orgánico - Tandil</title>
+    <title>Sentido Orgánico</title>
 </head>
 <body>
     <header>
@@ -152,6 +152,7 @@
             <h2>Agenda tu cita</h2>
             <hr>
             <p>Reserva tu cita en 3 simples pasos</p>
+            
             <form>
                 <div id="bookingForm" class="form_card">
                     <div class="steps">
@@ -258,17 +259,32 @@
                                 <input type="hidden" id="appointmentDateTime" name="appointmentDateTime">
                             </div>
     
-                            <div id="resume_card">
-    
-                            </div>
+                            <div id="resume_card"></div>
+                        </div>
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="acceptPolicies" name="acceptPolicies" required>
+                            <label for="acceptPolicies">Acepto las <a href="politicas.html" target="_blank">Políticas de Reserva</a>.</label>
+                        </div>                        <div class="form-checkbox">
+                            <input type="checkbox" id="acceptPolicies" name="acceptPolicies" required>
+                            <label for="acceptPolicies">Acepto que se me contacte ya sea por numero telefonico o email.</label>
                         </div>
                     </fieldset>
-                <div>
-                <button type="button" id="prevBtn" class="button_classic">Anterior</button>
-                <button type="button" id="nextBtn" class="button_classic-diff">Siguiente</button>
-            </div>
-            </div>
+                    
+                    <div style="display: flex; gap: 10px; margin-top: auto; padding-top: 20px;">
+                        <button type="button" id="prevBtn" class="button_classic">Anterior</button>
+                        <button type="button" id="nextBtn" class="button_classic-diff">Siguiente</button>
+                    </div>
+                </div>
             </form>
+
+            <div id="successCard" class="success-card" hidden>
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                </div>
+                <h3>¡Cita Confirmada!</h3>
+                <p id="successMessage"></p>
+            </div>  
+
             <div class="contact-inline" id="contactInline">
                 <div class="container">
                     <small>¿TENÉS ALGUNA DUDA?</small>
@@ -285,7 +301,7 @@
     <footer>
         <div>
             <a href="#home"><span>Sentido Orgánico</span></a>
-            <small>Estética y peluquería orgánica</small>
+            <small>Elegi priorizar tu salud capilar</small>
         </div>
         <div>
             <span>Contacto</span>
@@ -338,6 +354,11 @@
                 14.4H13.25V20C15.1399 19.7011 16.8601 18.7347 18.0985 17.2761C19.3369 15.8175 20.0115 13.9634 20 12.05Z" fill="#7A6B5D"></path> </g></svg>        
                 <small>Facebook</small>
             </a>
+        </div>
+        <div>
+            <a href="politica.html"><span>Politicas</span></a>
+            <a href="" target="_blank">Desarrollado por Jean Thomassen</a>
+            <strong>&copy; Sentido Organico Tandil</strong>
         </div>
     </footer>
    
