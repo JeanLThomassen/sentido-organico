@@ -40,11 +40,8 @@ section {
     align-items: center;
 }
 
-.container span{
-    color: var(--color-text-light);
-}
-
 .section-title{
+    color: var(--color-text-light);
     margin-top: 3rem;
 }
 

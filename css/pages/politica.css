@@ -1,6 +1,5 @@
 .page_politicas header {
     position: relative !important; 
-    border-bottom: 1px solid var(--color-accent) !important;
 }
 
 .page_politicas header span,

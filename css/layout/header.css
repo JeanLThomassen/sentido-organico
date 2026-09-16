@@ -59,7 +59,7 @@ header nav a:not(.button_header):hover::after {
 }
 
 header.scrolled {
-    background-color: transparent;
+    background-color: var(--color-alt);
 }
 
 header.scrolled span, 
@@ -87,7 +87,7 @@ header.scrolled > div:first-child {
     background: none;
     border: none;
     font-size: var(--font-size-xl);
-    color: var(--color-bg);
+    color: var(--color-alt);
     cursor: pointer;
 }
 

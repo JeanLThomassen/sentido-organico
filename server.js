@@ -10,7 +10,6 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname)));
 
-// Autenticación automática usando tu archivo credentials.json
 let authConfig = {
     scopes: [
         'https://www.googleapis.com/auth/calendar.events',
@@ -18,7 +17,6 @@ let authConfig = {
     ]
 };
 
-// Si existe la variable en Vercel, la parsea. Si no, usa el archivo local.
 if (process.env.GOOGLE_CREDENTIALS) {
     authConfig.credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 } else {
@@ -37,11 +35,10 @@ app.post('/api/agendar', async (req, res) => {
         return res.status(400).json({ error: 'Faltan datos obligatorios para el turno.' });
     }
 
-    const startDateTime = new Date(`${date}T${time}:00`); 
-    const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // 1 hora de duración
+    const startDateTime = new Date(`${date}T${time}:00-03:00`); 
+    const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000);
 
     try {
-        // 1. Verificar si ya hay un evento o bloqueo en ese horario exacto
         const freeBusyCheck = await calendar.freebusy.query({
             requestBody: {
                 timeMin: startDateTime.toISOString(),
@@ -56,12 +53,17 @@ app.post('/api/agendar', async (req, res) => {
             return res.status(400).json({ success: false, error: 'Lo siento, ese horario ya está ocupado o no disponible.' });
         }
 
-        // 2. Si está libre, creamos el turno
         const event = {
             summary: `Turno: ${service} - ${name}`,
             description: `Cliente: ${name}\nTeléfono: ${phone}\nEmail: ${email}`,
-            start: { dateTime: startDateTime.toISOString() },
-            end: { dateTime: endDateTime.toISOString() },
+            start: { 
+                dateTime: startDateTime.toISOString(),
+                timeZone: 'America/Argentina/Buenos_Aires'
+            },
+            end: { 
+                dateTime: endDateTime.toISOString(),
+                timeZone: 'America/Argentina/Buenos_Aires'
+            },
         };
 
         const response = await calendar.events.insert({
@@ -86,7 +88,6 @@ app.get('/api/disponibilidad', async (req, res) => {
     if (!date) return res.status(400).json({ error: 'Falta la fecha' });
 
     try {
-        // Determinamos qué día de la semana es (0 = Domingo, 1 = Lunes, ..., 6 = Sábado)
         const fechaLocal = new Date(`${date}T00:00:00-03:00`);
         const diaSemana = fechaLocal.getDay();
 
