@@ -8,6 +8,7 @@
       "config": {
         "includeFiles": [
           "index.html",
+          "politicas.html",
           "css/**",
           "js/**",
           "img/**",
