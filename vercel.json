@@ -4,19 +4,14 @@
   "builds": [
     {
       "src": "server.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "/index.html",
-          "/politica.html",
-          "css/**",
-          "js/**",
-          "img/**",
-          "images/**",
-          "assets/**"
-        ]
-      }
-    }
+      "use": "@vercel/node"
+    },
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "css/**", "use": "@vercel/static" },
+    { "src": "js/**", "use": "@vercel/static" },
+    { "src": "assets/**", "use": "@vercel/static" },
+    { "src": "images/**", "use": "@vercel/static" },
+    { "src": "favicon.ico", "use": "@vercel/static" }
   ],
   "headers": [
     {
@@ -44,10 +39,10 @@
       ]
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
+      "source": "/api/(.*)",
+      "destination": "/server.js"
     }
   ]
 }
