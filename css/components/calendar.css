@@ -128,41 +128,31 @@
     padding: 10px 5px;
 }
 
-.time-btn {
-    padding: 10px 5px;
-    font-size: 0.9rem;
-    color: var(--color-text);
-    background-color: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.time-btn:hover:not(:disabled) {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-}
-
-.time-btn:disabled {
-    opacity: 0.4;
-    text-decoration: line-through;
-    cursor: not-allowed;
-    background-color: #f5f5f5;
-}
-
 .btn_time {
     all: unset;
     box-sizing: border-box;
     padding: 8px 14px;
     border: 1px solid var(--color-border);
     border-radius: 6px;
-    color: var(--color-text-muted);
+    color: var(--color-text);
+    background-color: var(--color-bg);
     font-size: var(--font-size-sm);
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    text-align: center;
+    transition: all 0.2s ease;
 }
 
-.btn_time:hover {
+.btn_time:hover:not(:disabled) {
     background-color: var(--color-accent-light);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.btn_time:disabled {
+    opacity: 0.5;
+    text-decoration: line-through;
+    cursor: not-allowed;
+    background-color: #f5f5f5;
+    border-color: var(--color-border);
+    color: var(--color-text-muted);
 }
