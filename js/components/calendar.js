@@ -56,7 +56,6 @@ export function initCalendar(root) {
             grid.appendChild(document.createElement('div'));
         }
 
-        // Fecha actual sin horas para comparar días pasados
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
@@ -92,9 +91,11 @@ export function initCalendar(root) {
         timesContainer.innerHTML = '<small style="padding: 10px;">Cargando horarios...</small>';
 
         const isoDate = selectedDate.toISOString().split('T')[0];
+        const serviceSelect = document.querySelector('#service-select');
+        const service = serviceSelect ? serviceSelect.value : 'corte';
 
         try {
-            const response = await fetch(`/api/disponibilidad?date=${isoDate}`);
+            const response = await fetch(`/api/disponibilidad?date=${isoDate}&service=${service}`);
             const data = await response.json();
 
             timesContainer.innerHTML = '';
@@ -117,7 +118,6 @@ export function initCalendar(root) {
                     timeBtn.style.borderColor = '#d9534f';
                     timeBtn.style.textDecoration = 'line-through';
                     timeBtn.style.cursor = 'not-allowed';
-                    timeBtn.title = 'Horario ocupado';
                 } else {
                     timeBtn.style.backgroundColor = '';
                     timeBtn.style.color = '';
@@ -132,7 +132,6 @@ export function initCalendar(root) {
             });
 
         } catch (error) {
-            console.error('Error al obtener la disponibilidad:', error);
             timesContainer.innerHTML = '<small style="padding: 10px; color: red;">Error al cargar horarios.</small>';
         }
     }

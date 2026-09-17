@@ -24,9 +24,20 @@ if (process.env.GOOGLE_CREDENTIALS) {
 }
 
 const auth = new google.auth.GoogleAuth(authConfig);
-
 const calendar = google.calendar({ version: 'v3', auth });
 const CALENDAR_ID = process.env.CALENDAR_ID;
+
+const duraciones = {
+    'corte': 60,
+    'color-b': 90,
+    'color-r': 120,
+    'color-c': 120,
+    'mechas': 180,
+    'balayage': 180,
+    'tratamiento-a': 90,
+    'tratamiento-ldf': 90,
+    'p-m': 60
+};
 
 app.post('/api/agendar', async (req, res) => {
     const { name, email, phone, service, date, time } = req.body;
@@ -35,8 +46,9 @@ app.post('/api/agendar', async (req, res) => {
         return res.status(400).json({ error: 'Faltan datos obligatorios para el turno.' });
     }
 
+    const duracionMinutos = duraciones[service] || 60;
     const startDateTime = new Date(`${date}T${time}:00-03:00`); 
-    const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000);
+    const endDateTime = new Date(startDateTime.getTime() + (duracionMinutos * 60 * 1000));
 
     try {
         const freeBusyCheck = await calendar.freebusy.query({
@@ -78,30 +90,43 @@ app.post('/api/agendar', async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Error al gestionar el calendario:', error);
+        console.error(error);
         res.status(500).json({ error: 'Hubo un problema al procesar el turno con Google Calendar.' });
     }
 });
 
 app.get('/api/disponibilidad', async (req, res) => {
-    const { date } = req.query; // Formato YYYY-MM-DD
+    const { date, service } = req.query;
     if (!date) return res.status(400).json({ error: 'Falta la fecha' });
 
     try {
+        const duracionMinutos = duraciones[service] || 60;
         const fechaLocal = new Date(`${date}T00:00:00-03:00`);
         const diaSemana = fechaLocal.getDay();
 
         let horariosPosibles = [];
+        let cierreMinutos = 0;
 
         if (diaSemana === 0) {
-            // Domingos: NO trabaja
             return res.json({ success: true, horarios: [] });
         } else if (diaSemana >= 1 && diaSemana <= 5) {
-            // Lunes a Viernes: 8hs a 12hs
-            horariosPosibles = ["08:00", "09:00", "10:00", "11:00"];
+            cierreMinutos = 12 * 60;
+            let actual = 8 * 60;
+            while (actual < cierreMinutos) {
+                let h = Math.floor(actual / 60).toString().padStart(2, '0');
+                let m = (actual % 60).toString().padStart(2, '0');
+                horariosPosibles.push(`${h}:${m}`);
+                actual += 30;
+            }
         } else if (diaSemana === 6) {
-            // Sábados: 9hs a 17hs
-            horariosPosibles = ["09:00", "10:30", "12:00", "13:30", "15:00", "16:00"];
+            cierreMinutos = 17 * 60;
+            let actual = 9 * 60;
+            while (actual < cierreMinutos) {
+                let h = Math.floor(actual / 60).toString().padStart(2, '0');
+                let m = (actual % 60).toString().padStart(2, '0');
+                horariosPosibles.push(`${h}:${m}`);
+                actual += 30;
+            }
         }
 
         const timeMin = new Date(`${date}T00:00:00.000-03:00`).toISOString();
@@ -117,20 +142,23 @@ app.get('/api/disponibilidad', async (req, res) => {
 
         const busySlots = freeBusyCheck.data.calendars[CALENDAR_ID].busy || [];
 
-        // Evaluamos cada horario posible contra los bloqueos del calendario
         const horariosFinales = horariosPosibles.map(hora => {
-            const inicioSlot = new Date(`${date}T${hora}:00-03:00`).getTime();
-            const finSlot = inicioSlot + (60 * 60 * 1000); // 1 hora de duración por turno
+            const [horas, minutos] = hora.split(':').map(Number);
+            const inicioSlotMin = (horas * 60) + minutos;
+            const finSlotMin = inicioSlotMin + duracionMinutos;
+
+            if (finSlotMin > cierreMinutos) {
+                return { time: hora, available: false };
+            }
+
+            const inicioSlotMs = new Date(`${date}T${hora}:00-03:00`).getTime();
+            const finSlotMs = inicioSlotMs + (duracionMinutos * 60 * 1000);
 
             const estaOcupado = busySlots.some(slot => {
+                if (slot.start.length === 10) return slot.start === date;
                 const inicioBusy = new Date(slot.start).getTime();
                 const finBusy = new Date(slot.end).getTime();
-
-                if (slot.start.length === 10) {
-                    return slot.start === date;
-                }
-
-                return (inicioSlot < finBusy && finSlot > inicioBusy);
+                return (inicioSlotMs < finBusy && finSlotMs > inicioBusy);
             });
 
             return { time: hora, available: !estaOcupado };
@@ -138,7 +166,7 @@ app.get('/api/disponibilidad', async (req, res) => {
 
         res.json({ success: true, horarios: horariosFinales });
     } catch (error) {
-        console.error('Error al consultar disponibilidad:', error);
+        console.error(error);
         res.status(500).json({ error: 'Error al obtener horarios' });
     }
 });
@@ -146,9 +174,8 @@ app.get('/api/disponibilidad', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {
-        console.log(`Servidor corriendo en http://localhost:${PORT}`);
+        console.log(`http://localhost:${PORT}`);
     });
 }
 
 module.exports = app;
-
