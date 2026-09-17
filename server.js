@@ -101,8 +101,8 @@ app.get('/api/disponibilidad', async (req, res) => {
 
     try {
         const duracionMinutos = duraciones[service] || 60;
-        const fechaLocal = new Date(`${date}T00:00:00-03:00`);
-        const diaSemana = fechaLocal.getDay();
+        const [year, month, dayStr] = date.split('-');
+        const diaSemana = new Date(Date.UTC(year, month - 1, dayStr)).getUTCDay();
 
         let horariosPosibles = [];
         let cierreMinutos = 0;
