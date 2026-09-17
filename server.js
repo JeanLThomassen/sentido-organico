@@ -29,14 +29,14 @@ const CALENDAR_ID = process.env.CALENDAR_ID;
 
 const duraciones = {
     'corte': 60,
-    'color-b': 90,
-    'color-r': 120,
-    'color-c': 120,
+    'color-barro': 90,
+    'color-raiz': 120,
+    'color-completo': 120,
     'mechas': 180,
     'balayage': 180,
-    'tratamiento-a': 90,
+    'tratamiento-ayur': 90,
     'tratamiento-ldf': 90,
-    'p-m': 60
+    'peinado-maquillaje': 60
 };
 
 app.post('/api/agendar', async (req, res) => {
