@@ -1,71 +1,65 @@
 # Sentido Orgánico
 
-Landing page para un salón de belleza, con sistema de reserva de turnos online integrado a Google Calendar.
+Landing page con sistema de reserva de turnos online para Sentido Orgánico, un salón de belleza. Los clientes pueden ver los servicios disponibles y reservar un turno eligiendo día y horario, con verificación de disponibilidad en tiempo real contra Google Calendar.
 
-🔗 **Demo en vivo:** [https://sentido-organico.vercel.app/]
+🔗 **Demo en producción:** [sentido-organico.vercel.app](https://sentido-organico.vercel.app/)
 
 ## ¿Qué problema resuelve?
 
-El negocio recibía turnos por teléfono, lo que implicaba atención manual todo el día y riesgo de errores u horarios duplicados. Este sistema permite que los clientes reserven su turno directamente desde la web, viendo en tiempo real qué horarios están disponibles según el servicio elegido, y sincronizando todo automáticamente con el Google Calendar del negocio.
+El salón necesitaba una forma de recibir turnos online sin que alguien tenga que atender el teléfono todo el día. Este proyecto automatiza esa gestión: el cliente reserva desde la web, y el turno se sincroniza automáticamente con el Google Calendar del negocio, bloqueando ese horario para que no se pueda superponer con otro turno.
 
 ## Funcionalidades
 
 - Calendario interactivo para elegir día y horario disponible.
-- Cálculo automático de disponibilidad según la duración de cada servicio (corte, color, mechas, etc.), consultando en tiempo real el calendario del negocio vía la API de Google Calendar (`freebusy`).
-- Formulario de reserva en pasos (datos del cliente → servicio → confirmación de fecha y hora).
-- Creación automática del evento en Google Calendar al confirmar el turno, con los datos del cliente.
-- Diseño responsive, con menú mobile y animaciones de scroll.
+- Consulta de disponibilidad en tiempo real contra Google Calendar (respeta turnos ya ocupados).
+- Formulario de reserva paso a paso (datos del cliente → servicio → confirmación).
+- Duración de turno automática según el servicio elegido (corte, color, balayage, tratamientos, etc.).
+- Creación automática del evento en Google Calendar al confirmar la reserva.
+- Diseño responsive, con menú mobile y animaciones al hacer scroll.
 
 ## Tecnologías
 
 - **Frontend:** HTML, CSS, JavaScript (vanilla, sin frameworks)
-- **Backend:** Node.js + Express
+- **Backend:** Node.js, Express
 - **Integración:** Google Calendar API (`googleapis`)
 - **Deploy:** Vercel
 
-## Estructura del proyecto
-
-```
-/
-├── server.js           # API: agendar turno y consultar disponibilidad
-├── public/
-│   ├── index.html
-│   ├── components/
-│   │   ├── calendar.js  # Lógica del selector de fecha/hora
-│   │   ├── form.js       # Lógica del formulario multi-paso
-│   │   ├── modal.js
-│   │   └── navbar.js
-│   └── ...
-```
-
 ## Cómo correrlo localmente
 
-1. Cloná el repositorio:
-   ```bash
-   git clone https://github.com/JeanLThomassen/sentido-organico.git
-   cd sentido-organico
-   npm install
-   ```
+```bash
+git clone https://github.com/JeanLThomassen/sentido-organico.git
+cd sentido-organico
+npm install
+```
 
-2. Creá un archivo `.env` en la raíz con:
-   ```
-   CALENDAR_ID=tu_calendar_id@group.calendar.google.com
-   GOOGLE_CREDENTIALS={"type":"service_account", ...}
-   ```
-   > La cuenta de servicio de Google necesita permisos de lectura/escritura sobre el calendario indicado en `CALENDAR_ID`.
+Crear un archivo `.env` en la raíz con las siguientes variables:
 
-3. Iniciá el servidor:
-   ```bash
-   node server.js
-   ```
-   La app va a estar disponible en `http://localhost:3000`.
+```
+GOOGLE_CREDENTIALS='{ ...contenido del JSON de la cuenta de servicio de Google... }'
+CALENDAR_ID=tu_calendar_id@group.calendar.google.com
+PORT=3000
+```
+
+> Necesitás una cuenta de servicio de Google Cloud con acceso a la Google Calendar API y compartida con el calendario que quieras usar. El proyecto no incluye `credentials.json` ni ningún dato sensible por seguridad.
+
+Luego:
+
+```bash
+npm start
+```
+
+Y abrir `http://localhost:3000`.
 
 ## Próximas mejoras
 
-- Restringir CORS al dominio de producción.
-- Agregar rate limiting a los endpoints de la API para evitar abuso.
-- Validación de formato de email/teléfono en el backend, no solo en el frontend.
+- Validación adicional de datos del lado del servidor.
+- Rate limiting en el endpoint de reserva para prevenir abuso.
+- Notificación por email al cliente al confirmar el turno.
 
-## Autor
+## Nota
 
-Jean Lucas Thomassen — [GitHub](https://github.com/JeanLThomassen)
+Este es un proyecto de portfolio, desarrollado para un caso real y actualmente en uso activo por el negocio. El código es de libre consulta con fines de aprendizaje; no está pensado para reutilización comercial directa sin adaptación.
+
+---
+
+Desarrollado por [Jean Lucas Thomassen](https://github.com/JeanLThomassen)
