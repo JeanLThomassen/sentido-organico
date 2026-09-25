@@ -131,7 +131,7 @@ app.post('/api/agendar', async (req, res) => {
                 subject: '¡Tu turno está confirmado! 🌿',
                 html: `
                     <div style="font-family: Arial, sans-serif; color: #f4f6f0; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
-                        <div style="background-color: #7A6B5D; color: white; padding: 20px; text-align: center;">
+                        <div style="background-color: #7aa769; color: white; padding: 20px; text-align: center;">
                             <h2 style="margin: 0;">Sentido Orgánico</h2>
                         </div>
                         <div style="padding: 20px;">
@@ -144,7 +144,7 @@ app.post('/api/agendar', async (req, res) => {
                                 <p style="margin: 5px 0;"><strong>Hora:</strong> ${safeTime} hs</p>
                             </div>
                             
-                            <p style="font-size: 14px; color: #666;">Te esperamos para priorizar tu salud capilar. Si necesitas cancelar o reprogramar, por favor contáctanos con anticipación.</p>
+                            <p style="font-size: 14px; color: #f4f6f0;">Te esperamos para priorizar tu salud capilar. Si necesitas cancelar o reprogramar, por favor contáctanos con anticipación.</p>
                         </div>
                     </div>
                 `
@@ -158,13 +158,13 @@ app.post('/api/agendar', async (req, res) => {
 
         try {
             const mailLucrecia = {
-                from: `"Sistema Web" <${process.env.EMAIL_USER}>`,
+                from: `"Sistema de Reservas" <${process.env.EMAIL_USER}>`,
                 to: process.env.EMAIL_USER,
                 subject: `🔔 NUEVO TURNO: ${service} - ${safeName}`,
                 html: `
-                    <div style="font-family: Arial, sans-serif; color: #333;">
-                        <h2 style="color: #6b8e23;">¡Tenés una nueva reserva!</h2>
-                        <div style="background-color: #f5f5f5; padding: 15px; border-radius: 8px;">
+                    <div style="font-family: Arial, sans-serif; color: #f4f6f0;">
+                        <h2 style="color: #4A3F35;">¡Tenés una nueva reserva!</h2>
+                        <div style="background-color: #7aa769; padding: 15px; border-radius: 8px;">
                             <p><strong>Cliente:</strong> ${safeName}</p>
                             <p><strong>Teléfono:</strong> <a href="https://wa.me/549${safePhone}">${safePhone}</a></p>
                             <p><strong>Email:</strong> ${safeEmail}</p>
