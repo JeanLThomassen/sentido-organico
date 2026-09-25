@@ -4,6 +4,15 @@ const cors = require('cors');
 const path = require('path');
 const { google } = require('googleapis');
 
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -83,6 +92,38 @@ app.post('/api/agendar', async (req, res) => {
             resource: event,
         });
         
+        try {
+            const mailOptions = {
+                from: `"Sentido Orgánico" <${process.env.EMAIL_USER}>`,
+                to: safeEmail,
+                subject: '¡Tu turno está confirmado! 🌿',
+                html: `
+                    <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
+                        <div style="background-color: #6b8e23; color: white; padding: 20px; text-align: center;">
+                            <h2 style="margin: 0;">Sentido Orgánico</h2>
+                        </div>
+                        <div style="padding: 20px;">
+                            <p style="font-size: 16px;">¡Hola <strong>${safeName}</strong>!</p>
+                            <p style="font-size: 16px;">Tu turno con Lucrecia ha sido agendado exitosamente.</p>
+                            
+                            <div style="background-color: #f4f6f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                                <p style="margin: 5px 0;"><strong>Servicio:</strong> ${service}</p>
+                                <p style="margin: 5px 0;"><strong>Fecha:</strong> ${safeDate}</p>
+                                <p style="margin: 5px 0;"><strong>Hora:</strong> ${safeTime} hs</p>
+                            </div>
+                            
+                            <p style="font-size: 14px; color: #666;">Te esperamos para priorizar tu salud capilar. Si necesitas cancelar o reprogramar, por favor contáctanos con anticipación.</p>
+                        </div>
+                    </div>
+                `
+            };
+            
+            await transporter.sendMail(mailOptions);
+            console.log('Email de confirmación enviado a:', safeEmail);
+        } catch (mailError) {
+            console.error('El turno se agendó, pero falló el envío del email:', mailError);
+        }
+
         res.status(200).json({ 
             success: true, 
             message: '¡Turno agendado con éxito!',
