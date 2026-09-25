@@ -50,10 +50,6 @@ npm start
 
 Y abrir `http://localhost:3000`.
 
-## Próximas mejoras
-
-- Notificación por email al cliente al confirmar el turno.
-
 ## Nota
 
 Este es un proyecto de portfolio, desarrollado para un caso real y actualmente en uso activo por el negocio. El código es de libre consulta con fines de aprendizaje; no está pensado para reutilización comercial directa sin adaptación.
