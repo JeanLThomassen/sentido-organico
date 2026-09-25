@@ -52,8 +52,6 @@ Y abrir `http://localhost:3000`.
 
 ## Próximas mejoras
 
-- Validación adicional de datos del lado del servidor.
-- Rate limiting en el endpoint de reserva para prevenir abuso.
 - Notificación por email al cliente al confirmar el turno.
 
 ## Nota
