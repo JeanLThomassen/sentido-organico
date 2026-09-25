@@ -156,6 +156,34 @@ app.post('/api/agendar', async (req, res) => {
             console.error('Error al enviar el email:', mailError);
         }
 
+        try {
+            const mailLucrecia = {
+                from: `"Sistema Web" <${process.env.EMAIL_USER}>`,
+                to: process.env.EMAIL_USER,
+                subject: `🔔 NUEVO TURNO: ${service} - ${safeName}`,
+                html: `
+                    <div style="font-family: Arial, sans-serif; color: #333;">
+                        <h2 style="color: #6b8e23;">¡Tenés una nueva reserva!</h2>
+                        <div style="background-color: #f5f5f5; padding: 15px; border-radius: 8px;">
+                            <p><strong>Cliente:</strong> ${safeName}</p>
+                            <p><strong>Teléfono:</strong> <a href="https://wa.me/549${safePhone}">${safePhone}</a></p>
+                            <p><strong>Email:</strong> ${safeEmail}</p>
+                            <hr style="border: 1px solid #ddd; margin: 15px 0;">
+                            <p><strong>Servicio:</strong> ${service}</p>
+                            <p><strong>Día:</strong> ${safeDate}</p>
+                            <p><strong>Hora:</strong> ${safeTime} hs</p>
+                        </div>
+                        <p><small>Este turno ya se guardó automáticamente en tu Google Calendar.</small></p>
+                    </div>
+                `
+            };
+            
+            await transporter.sendMail(mailLucrecia);
+            console.log('Aviso interno enviado a Lucrecia.');
+        } catch (avisoError) {
+            console.error('Error al avisar a Lucrecia:', avisoError);
+        }
+
         res.status(200).json({ 
             success: true, 
             message: '¡Turno agendado con éxito!',
