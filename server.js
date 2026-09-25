@@ -51,12 +51,44 @@ const duraciones = {
 app.post('/api/agendar', async (req, res) => {
     const { name, email, phone, service, date, time } = req.body;
 
-    if (!name || !date || !time || !service) {
-        return res.status(400).json({ error: 'Faltan datos obligatorios para el turno.' });
+    const safeName = name ? name.trim() : '';
+    const safeEmail = email ? email.trim().toLowerCase() : '';
+    const safePhone = phone ? phone.replace(/[\s\-\(\)]/g, '') : '';
+    const safeDate = date ? date.trim() : '';
+    const safeTime = time ? time.trim() : '';
+
+    const errores = [];
+
+    if (safeName.length < 2) errores.push('El nombre es obligatorio y debe ser válido.');
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!safeEmail || !emailRegex.test(safeEmail)) errores.push('El email no tiene un formato válido.');
+    
+    const phoneRegex = /^\+?[0-9]{8,15}$/;
+    if (!safePhone || !phoneRegex.test(safePhone)) errores.push('El teléfono debe contener entre 8 y 15 números.');
+    
+    const serviciosValidos = Object.keys(duraciones);
+    if (!service || !serviciosValidos.includes(service)) errores.push('El servicio seleccionado no existe o fue manipulado.');
+    
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!safeDate || !dateRegex.test(safeDate)) {
+        errores.push('La fecha no tiene un formato válido.');
+    } else {
+        const turnoDate = new Date(`${safeDate}T00:00:00-03:00`);
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+        if (turnoDate < hoy) errores.push('No podés agendar turnos en fechas pasadas.');
+    }
+
+    const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+    if (!safeTime || !timeRegex.test(safeTime)) errores.push('La hora no tiene un formato válido.');
+
+    if (errores.length > 0) {
+        return res.status(400).json({ success: false, error: 'Por favor, revisá los datos ingresados.', detalles: errores });
     }
 
     const duracionMinutos = duraciones[service] || 60;
-    const startDateTime = new Date(`${date}T${time}:00-03:00`); 
+    const startDateTime = new Date(`${safeDate}T${safeTime}:00-03:00`); 
     const endDateTime = new Date(startDateTime.getTime() + (duracionMinutos * 60 * 1000));
 
     try {
@@ -75,8 +107,8 @@ app.post('/api/agendar', async (req, res) => {
         }
 
         const event = {
-            summary: `Turno: ${service} - ${name}`,
-            description: `Cliente: ${name}\nTeléfono: ${phone}\nEmail: ${email}`,
+            summary: `Turno: ${service} - ${safeName}`,
+            description: `Cliente: ${safeName}\nTeléfono: ${safePhone}\nEmail: ${safeEmail}`,
             start: { 
                 dateTime: startDateTime.toISOString(),
                 timeZone: 'America/Argentina/Buenos_Aires'
@@ -87,7 +119,7 @@ app.post('/api/agendar', async (req, res) => {
             },
         };
 
-        const response = await calendar.events.insert({
+        const googleResponse = await calendar.events.insert({
             calendarId: CALENDAR_ID,
             resource: event,
         });
@@ -95,7 +127,7 @@ app.post('/api/agendar', async (req, res) => {
         try {
             const mailOptions = {
                 from: `"Sentido Orgánico" <${process.env.EMAIL_USER}>`,
-                to: safeEmail,
+                to: safeEmail, 
                 subject: '¡Tu turno está confirmado! 🌿',
                 html: `
                     <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
@@ -119,19 +151,19 @@ app.post('/api/agendar', async (req, res) => {
             };
             
             await transporter.sendMail(mailOptions);
-            console.log('Email de confirmación enviado a:', safeEmail);
+            console.log('Email enviado correctamente a:', safeEmail);
         } catch (mailError) {
-            console.error('El turno se agendó, pero falló el envío del email:', mailError);
+            console.error('Error al enviar el email:', mailError);
         }
 
         res.status(200).json({ 
             success: true, 
             message: '¡Turno agendado con éxito!',
-            link: response.data.htmlLink 
+            link: googleResponse.data.htmlLink 
         });
 
     } catch (error) {
-        console.error(error);
+        console.error('Error general al procesar el turno:', error);
         res.status(500).json({ error: 'Hubo un problema al procesar el turno con Google Calendar.' });
     }
 });
