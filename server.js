@@ -130,7 +130,7 @@ app.post('/api/agendar', async (req, res) => {
                 to: safeEmail, 
                 subject: '¡Tu turno está confirmado! 🌿',
                 html: `
-                    <div style="font-family: Arial, sans-serif; color: #4A3F35; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
+                    <div style="font-family: Arial, sans-serif; color: #f4f6f0; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
                         <div style="background-color: #7A6B5D; color: white; padding: 20px; text-align: center;">
                             <h2 style="margin: 0;">Sentido Orgánico</h2>
                         </div>
@@ -138,7 +138,7 @@ app.post('/api/agendar', async (req, res) => {
                             <p style="font-size: 16px;">¡Hola <strong>${safeName}</strong>!</p>
                             <p style="font-size: 16px;">Tu turno con Lucrecia ha sido agendado exitosamente.</p>
                             
-                            <div style="background-color: #f4f6f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                            <div style="background-color: #4A3F35; padding: 15px; border-radius: 8px; margin: 20px 0;">
                                 <p style="margin: 5px 0;"><strong>Servicio:</strong> ${service}</p>
                                 <p style="margin: 5px 0;"><strong>Fecha:</strong> ${safeDate}</p>
                                 <p style="margin: 5px 0;"><strong>Hora:</strong> ${safeTime} hs</p>
