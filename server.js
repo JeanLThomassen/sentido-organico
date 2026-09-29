@@ -130,7 +130,7 @@ app.post('/api/agendar', async (req, res) => {
                 to: safeEmail, 
                 subject: '¡Tu turno está confirmado! 🌿',
                 html: `
-                    <div style="font-family: Arial, sans-serif; color: #f4f6f0; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;">
+                    <div style="font-family: Arial, sans-serif; color: #000000; max-width: 600px; margin: 0 auto; border: 1px solid #4A3F35; border-radius: 10px; overflow: hidden;">
                         <div style="background-color: #7aa769; color: white; padding: 20px; text-align: center;">
                             <h2 style="margin: 0;">Sentido Orgánico</h2>
                         </div>
@@ -162,13 +162,13 @@ app.post('/api/agendar', async (req, res) => {
                 to: process.env.EMAIL_USER,
                 subject: `🔔 NUEVO TURNO: ${service} - ${safeName}`,
                 html: `
-                    <div style="font-family: Arial, sans-serif; color: #f4f6f0;">
-                        <h2 style="color: #4A3F35;">¡Tenés una nueva reserva!</h2>
+                    <div style="font-family: Arial, sans-serif; color: #000000;">
+                        <h2 style="color: #000000;">¡Tenés una nueva reserva!</h2>
                         <div style="background-color: #7aa769; padding: 15px; border-radius: 8px;">
                             <p><strong>Cliente:</strong> ${safeName}</p>
                             <p><strong>Teléfono:</strong> <a href="https://wa.me/549${safePhone}">${safePhone}</a></p>
                             <p><strong>Email:</strong> ${safeEmail}</p>
-                            <hr style="border: 1px solid #ddd; margin: 15px 0;">
+                            <hr style="border: 1px solid #4A3F35; margin: 15px 0;">
                             <p><strong>Servicio:</strong> ${service}</p>
                             <p><strong>Día:</strong> ${safeDate}</p>
                             <p><strong>Hora:</strong> ${safeTime} hs</p>
