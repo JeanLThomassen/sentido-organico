@@ -5,8 +5,13 @@
     scroll-behavior: smooth;
 }
 
+/* Antes: `all: unset`, que además de borrar borde/márgenes se llevaba el
+   `min-width: min-content` del UA y los estilos de foco. Reset explícito. */
 fieldset {
-    all: unset;
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-width: 0;
 }
 
 
@@ -41,7 +46,7 @@ section {
 }
 
 .section-title{
-    color: var(--color-text-light);
+    color: var(--color-text-muted); /* AA: era --color-text-light (1.9:1) */
     margin-top: 3rem;
 }
 

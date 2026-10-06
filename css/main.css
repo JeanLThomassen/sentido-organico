@@ -4,14 +4,20 @@
 
 @import url('./components/button.css');
 @import url('./components/navbar.css');
-@import url('./components/card.css');
 @import url('./components/form.css');
 @import url('./components/calendar.css');
 @import url('./components/contact-widget.css');
-@import url('./components/mobile.css');
+@import url('./components/modal.css');
 
 @import url('./layout/header.css');
 @import url('./layout/footer.css');
 @import url('./layout/grid.css');
 
 @import url('./pages/politica.css');
+
+/* Estilos de foco: ganan a los `all: unset` de los componentes. */
+@import url('./base/focus.css');
+
+/* Mobile al final de todo: reemplaza el <link> suelto que había en el HTML
+   (que se cargaba dos veces) y mantiene el mismo orden de cascada. */
+@import url('./components/mobile.css');

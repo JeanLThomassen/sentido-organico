@@ -26,10 +26,15 @@ export function initCalendar(root) {
 
     function openPopover() {
         popover.hidden = false;
+        trigger.setAttribute('aria-expanded', 'true');
         showDaysView();
+        // El foco pasa al primer día disponible para poder navegar con teclado.
+        const firstDay = grid.querySelector('.btn_day:not(:disabled)');
+        if (firstDay) firstDay.focus();
     }
     function closePopover() {
         popover.hidden = true;
+        trigger.setAttribute('aria-expanded', 'false');
     }
     function togglePopover() {
         popover.hidden ? openPopover() : closePopover();
@@ -41,6 +46,7 @@ export function initCalendar(root) {
     function showTimesView() {
         daysView.hidden = true;
         timesView.hidden = false;
+        backToDaysBtn.focus();
     }
 
     function renderDays() {
@@ -68,13 +74,20 @@ export function initCalendar(root) {
             const cellDate = new Date(year, month, day);
             cellDate.setHours(0, 0, 0, 0);
 
+            // El número solo no alcanza para lectores de pantalla.
+            dayBtn.setAttribute('aria-label', `${day} de ${monthNames[month]} de ${year}`);
+
             if (cellDate < today) {
                 dayBtn.disabled = true;
-                dayBtn.style.opacity = '0.3';
-                dayBtn.style.cursor = 'not-allowed';
             } else {
+                if (selectedDate && cellDate.getTime() === selectedDate.getTime()) {
+                    dayBtn.classList.add('btn_day--selected');
+                }
                 dayBtn.addEventListener('click', () => {
                     selectedDate = new Date(year, month, day);
+                    grid.querySelectorAll('.btn_day--selected')
+                        .forEach(btn => btn.classList.remove('btn_day--selected'));
+                    dayBtn.classList.add('btn_day--selected');
                     renderTimes();
                     showTimesView();
                 });
@@ -88,7 +101,7 @@ export function initCalendar(root) {
         const dayNumber = selectedDate.getDate();
         const monthName = monthNames[selectedDate.getMonth()].toLowerCase();
         selectedDayLabel.textContent = `${dayNumber} de ${monthName}`;
-        timesContainer.innerHTML = '<small style="padding: 10px;">Cargando horarios...</small>';
+        timesContainer.innerHTML = '<small class="calendar__msg">Cargando horarios...</small>';
 
         const isoDate = selectedDate.toISOString().split('T')[0];
         const serviceSelect = document.querySelector('#service-select');
@@ -101,7 +114,7 @@ export function initCalendar(root) {
             timesContainer.innerHTML = '';
 
             if (!data.success || !data.horarios || data.horarios.length === 0) {
-                timesContainer.innerHTML = '<small style="padding: 10px; color: red;">No hay horarios configurados.</small>';
+                timesContainer.innerHTML = '<small class="calendar__msg calendar__msg--error">No hay horarios configurados.</small>';
                 return;
             }
 
@@ -113,15 +126,10 @@ export function initCalendar(root) {
 
                 if (!slot.available) {
                     timeBtn.disabled = true;
-                    timeBtn.style.backgroundColor = '#ffe6e6';
-                    timeBtn.style.color = '#a94442'; 
-                    timeBtn.style.borderColor = '#d9534f';
-                    timeBtn.style.textDecoration = 'line-through';
-                    timeBtn.style.cursor = 'not-allowed';
+                    // El tachado y el color los define .btn_time:disabled en CSS;
+                    // esto solo le dice al lector de pantalla lo que el estilo no dice.
+                    timeBtn.setAttribute('aria-label', `${slot.time}, no disponible`);
                 } else {
-                    timeBtn.style.backgroundColor = '';
-                    timeBtn.style.color = '';
-                    timeBtn.style.borderColor = '';
                     timeBtn.addEventListener('click', () => {
                         selectedTime = slot.time;
                         confirmSelection();
@@ -132,7 +140,7 @@ export function initCalendar(root) {
             });
 
         } catch (error) {
-            timesContainer.innerHTML = '<small style="padding: 10px; color: red;">Error al cargar horarios.</small>';
+            timesContainer.innerHTML = '<small class="calendar__msg calendar__msg--error">Error al cargar horarios.</small>';
         }
     }
 
@@ -145,6 +153,8 @@ export function initCalendar(root) {
             hiddenInput.value = `${isoDate} ${selectedTime}`;
         }
         closePopover();
+        // El popover quedó oculto con el foco dentro: se devuelve al disparador.
+        trigger.focus();
     }
 
     trigger.addEventListener('click', (e) => {
@@ -152,7 +162,18 @@ export function initCalendar(root) {
         togglePopover();
     });
 
-    backToDaysBtn.addEventListener('click', showDaysView);
+    backToDaysBtn.addEventListener('click', () => {
+        showDaysView();
+        const volver = grid.querySelector('.btn_day--selected') || grid.querySelector('.btn_day:not(:disabled)');
+        if (volver) volver.focus();
+    });
+
+    // Escape cierra el calendario y devuelve el foco al disparador.
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape' || popover.hidden) return;
+        closePopover();
+        trigger.focus();
+    });
 
     nextMonthBtn.addEventListener('click', () => {
         const monthsDiff = (currentDate.getFullYear() - todayYear) * 12 + (currentDate.getMonth() - todayMonth);

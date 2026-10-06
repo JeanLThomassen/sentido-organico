@@ -1,0 +1,32 @@
+/* Foco visible para navegación por teclado.
+   IMPORTANTE: este archivo se importa al FINAL de main.css. Varios componentes
+   usan `all: unset` (botones del calendario, date-select, etc.) que borra el
+   outline; al tener la misma especificidad, gana el último en orden de fuente. */
+
+:focus-visible {
+    outline: 3px solid var(--color-accent-strong);
+    outline-offset: 2px;
+}
+
+/* El header y el hero van sobre la foto del hero (tono oscuro): tono claro. */
+header a:focus-visible,
+header button:focus-visible,
+.hero a:focus-visible {
+    outline-color: var(--color-accent-light);
+}
+
+/* Cuando el header ya tiene fondo claro, se vuelve al tono oscuro. */
+.page_politicas header a:focus-visible,
+.page_politicas header button:focus-visible,
+header.scrolled a:focus-visible,
+header.scrolled button:focus-visible,
+header:has(.nav-menu--open) a:focus-visible,
+header:has(.nav-menu--open) button:focus-visible {
+    outline-color: var(--color-accent-strong);
+}
+
+/* Inputs: además del outline, refuerzo el subrayado para que el foco se note
+   aunque el navegador dibuje un anillo fino. */
+input:focus-visible {
+    border-bottom-color: var(--color-accent-strong);
+}

@@ -22,15 +22,20 @@ initContactWidget(document);
 
 const header = document.querySelector('header');
 
+// Un solo listener + rAF: no se recalcula layout en cada evento de scroll.
+let scrollTicking = false;
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+        scrollTicking = false;
+    });
+}, { passive: true });
 
-const reveals = document.querySelectorAll('section, .service_case img, .about-text, .contact-inline, #serviceModal, #contactWidget');
+// Ojo: #serviceModal no entra acá. Empieza con `hidden` (display:none), el
+// observer nunca lo marcaría como visible y quedaría con opacity: 0 al abrirlo.
+const reveals = document.querySelectorAll('section, .service_case img, .about-text, .contact-inline, #contactWidget');
 
 reveals.forEach(el => el.classList.add('reveal'));
 

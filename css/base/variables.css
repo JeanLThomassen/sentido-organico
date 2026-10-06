@@ -3,24 +3,25 @@
   --color-bg: #fafafa;           /* fondo principal */
   --color-bg-alt: #f7f7f7;       /* fondo secundario, cards, secciones */
 
+  /* Superficie alternativa: fondo del header al hacer scroll e iconos sobre el hero */
+  --color-alt: #fafafa;
+
   /* Textos */
   --color-text: #4A3F35;
-  --color-text-light: #c2b6ac;         /* texto principal - marrón café */
   --color-text-muted: #7A6B5D;   /* texto secundario - tierra */
 
   /* Acentos / Botones */
-  --color-accent: #7aa769;       /* arena/dorado - botones, links, CTAs */
-  --color-accent-dark: #5a804c;  /* hover / estado activo (más oscuro) */
+  --color-accent: #7aa769;       /* arena/dorado - bordes, decoración, fondos */
   --color-accent-light: #c4d9ac; /* fondos suaves, badges, hover sutil */
+  --color-accent-strong: #4f7143;/* AA: botones con texto claro y enlaces sobre fondo claro (5.3:1) */
+  --color-accent-deep: #46653b;  /* AA: hover de esos botones (6.3:1) */
 
   /* Bordes & Lineas*/
   --color-line: #c4d5b6;
   --color-border: #d5c7b6;       /* beige - separadores, inputs, cards */
 
   /* Estados (ajustados a tonos tierra, sin que rompan la paleta) */
-  --color-success: #7A8B5C;      /* verde oliva suave */
   --color-error: #B5544A;        /* terracota/rojo tierra */
-  --color-warning: #C99A3E;      /* mostaza */
 
   /* Modo oscuro */
   --color-bg-dark: #2B241D;
@@ -34,15 +35,15 @@ body {
   color: var(--color-text);
 }
 
-.card {
-  background-color: var(--color-bg-alt);
-  border: 1px solid var(--color-border);
-}
-
 .text-muted {
   color: var(--color-text-muted);
 }
 
 .text-light{
     color: var(--color-text-dark);
+}
+
+/* Enlaces / resaltados sobre fondo claro (AA) */
+.text-accent {
+    color: var(--color-accent-strong);
 }

@@ -63,11 +63,14 @@
         font-size: 28px;
         cursor: pointer;
         padding: 0;
+        color: var(--color-alt);
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
         transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .hamburger-btn.scrolled {
         color: var(--color-text);
+        text-shadow: none;
     }
 
     /* ---------- MENU DESPLEGABLE ---------- */
@@ -113,7 +116,7 @@
         font-size: var(--font-size-xxl);
     }
 
-    .hero-text {
+    .hero_text {
         line-height: 1.4rem;
     }
 
@@ -122,37 +125,14 @@
         letter-spacing: 0.2rem;
     }
 
-    .hero .button-classic {
+    .hero .button_classic {
         display: block;
         width: 100%;
         margin: 0.5rem 0 0 0;
         box-sizing: border-box;
     }
 
-    /* ---------- SLIDER / SERVICIOS (slider viejo) ---------- */
-    .slider {
-        width: 100%;
-        padding: 0 1rem;
-        box-sizing: border-box;
-    }
-
-    .card {
-        flex-direction: column;
-        padding: 1rem;
-    }
-
-    .card__media {
-        flex: none;
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 1rem;
-    }
-
-    .card__image {
-        height: 200px;
-    }
-
-    /* ---------- SERVICE_CASE (grilla nueva) ---------- */
+    /* ---------- SERVICE_CASE (grilla) ---------- */
     .service_case {
         grid-template-columns: repeat(2, 2fr);
         gap: 0.5rem;
@@ -161,6 +141,7 @@
 
     .service-item .service-text {
         font-size: var(--font-size-base);
+        top: auto;      /* si no queda pegado arriba y el bottom no hace nada */
         left: 0.6rem;
         bottom: 0.6rem;
     }
@@ -218,13 +199,13 @@
         padding: 0.5rem;
     }
 
-    .form-card {
+    .form_card {
         width: 100%;
         padding: 1rem;
         box-sizing: border-box;
     }
 
-    .form-card hr {
+    .form_card hr {
         width: 100%;
     }
 
@@ -247,13 +228,19 @@
         margin-right: 5px;
     }
 
-    .form-input {
+    .form_input {
         flex-direction: column;
         width: 100%;
         gap: 0;
     }
 
-    .form_card > div:last-child {
+    .form_input input {
+        /* en columna, el flex-basis de 240px se aplicaría al ALTO */
+        flex: 0 0 auto;
+        max-width: none;
+    }
+
+    .form-actions {
         display: flex;
         flex-direction: row; 
         justify-content: space-between;
@@ -296,5 +283,27 @@
         flex-direction: column;
         gap: 1.5rem;
         padding: 1.5rem;
+    }
+}
+
+/* ===================== TABLET (769px - 1100px) ===================== */
+/* En este rango la tarjeta de ubicación se pisaba: el mapa (800px) le
+   robaba ancho al panel de texto. Acá el texto se queda fijo y el mapa
+   ocupa lo que sobra. */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .location-content {
+        width: 55%;
+        flex-shrink: 0;
+        padding: 2.5rem;
+    }
+
+    .location-card iframe {
+        flex: 1 1 0;
+        width: auto;
+        min-width: 0;
+    }
+
+    .about-container {
+        gap: 2rem;
     }
 }

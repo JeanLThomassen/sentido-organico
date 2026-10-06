@@ -12,6 +12,13 @@ button{
     cursor: pointer;
 }
 
+/* Estado de envío (evita dobles clics en "Confirmar Cita") */
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 .button_header {
     display: inline-block;
     padding: 8px 16px;
@@ -19,8 +26,8 @@ button{
     
     color: var(--color-bg);
 
-    border: 1px solid var(--color-accent);
-    background: linear-gradient(to right, var(--color-accent) 50%, transparent 50%);
+    border: 1px solid var(--color-accent-strong);
+    background: linear-gradient(to right, var(--color-accent-strong) 50%, transparent 50%);
     
     background-size: 200% 100%;
     
@@ -43,13 +50,13 @@ button{
     border-radius: 0.5rem;
 
     color: var(--color-bg);
-    background-color: var(--color-accent);
+    background-color: var(--color-accent-strong);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .button_classic:hover{
     color: var(--color-bg);
-    background-color: var(--color-accent-dark);
+    background-color: var(--color-accent-deep);
 
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);

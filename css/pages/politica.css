@@ -107,5 +107,5 @@ body.page_politicas {
 
 .card_politicas.activa .icono-desplegable {
     transform: rotate(45deg);
-    color: var(--color-accent);
+    color: var(--color-accent-strong);
 }

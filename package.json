@@ -1,9 +1,11 @@
 {
   "name": "sentido-organico",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Landing page con sistema de reserva de turnos online para Sentido Orgánico.",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

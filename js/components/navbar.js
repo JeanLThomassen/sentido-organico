@@ -14,18 +14,9 @@ export function initMobileMenu(root) {
         });
     });
 
-
-    document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('menuToggle');
-
+    // Mismo umbral que el header (js/main.js). Antes había un DOMContentLoaded
+    // anidado que volvía a buscar el botón al documento.
     window.addEventListener('scroll', () => {
-        if (menuToggle) {
-            if (window.scrollY > 50) {
-                menuToggle.classList.add('scrolled');
-            } else {
-                menuToggle.classList.remove('scrolled');
-            }
-        }
-    });
-});
+        toggleBtn.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
 }

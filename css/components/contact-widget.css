@@ -44,6 +44,11 @@
     margin: 0.5rem 0;
 }
 
+/* El widget mide 280px: ahí el título va más chico (antes era un style inline) */
+.contact-widget h3 {
+    font-size: var(--font-size-base);
+}
+
 .contact-widget p,
 .contact-inline p {
     font-size: var(--font-size-sm);
@@ -54,7 +59,7 @@
 .contact-inline a {
     display: inline-block;
     font-weight: var(--font-weight-semibold);
-    color: var(--color-accent);
+    color: var(--color-accent-strong); /* AA: era --color-accent (2.59:1) */
 }
 
 .contact-inline {

@@ -13,11 +13,14 @@ footer div{
     flex-direction: column;
 }
 
-a {
+/* Ojo: selector acotado al footer. Antes era un `a { ... }` a secas y se
+   filtraba a toda la página (rompía, por ejemplo, el link dentro de las
+   checkboxes, que se partía en 3 líneas). */
+footer a {
     display: flex;
     align-items: center;
 }
 
-a svg{
+footer a svg{
     width: 25px;
 }

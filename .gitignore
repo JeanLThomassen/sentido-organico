@@ -1,6 +1,15 @@
 # Dependencias
 node_modules/
 
+# OpenCode (herramienta de agente: skills, estado y configuración)
+.agents/
+.opencode/
+.opencode.json
+skills-lock.json
+AGENTS.md
+agents.md
+robots.txt
+
 # Archivos de entorno y credenciales sensibles
 .env
 .env.local
